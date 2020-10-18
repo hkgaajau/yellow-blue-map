@@ -1,0 +1,15 @@
+{{ define "main" }}
+
+{{ $Pages := .Pages }}
+
+<article>
+  <header><h1>{{ .Title | default "Posts" | humanize }}</h1></header>
+  <ul class="relaxed-block-list">
+    {{- range $Pages }}
+    {{ partial "list-item-shop.html" . }}
+    {{- end }}
+  </ul>
+  {{ .Content }}
+</article>
+
+{{ end }}

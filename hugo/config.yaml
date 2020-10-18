@@ -1,0 +1,23 @@
+baseURL: ""
+disablePathToLower: true
+languageCode: zh-Hant
+title: 黃藍列表
+theme: contrast-hugo
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+taxonomies:
+  district: districts
+  colour: colours
+  category: categories
+menu:
+  main:
+  - name: 全部
+    url: shops/
+  - name: 改動
+    url: changelogs/
+  - name: 分類
+    url: categories/
+  - name: 分區
+    url: districts/

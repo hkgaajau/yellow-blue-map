@@ -1,0 +1,15 @@
+{{ define "main" }}
+
+<article>
+  <header>
+    <div class="flex">
+      <span class="tag"><a href="{{ ($.Site.GetPage (printf "/%s/%s" "districts" .Params.districts)).RelPermalink }}">{{ .Params.districts | upper }}</a></span>
+      <span class="tag"><a href="{{ ($.Site.GetPage (printf "/%s/%s" "categories" .Params.categories)).RelPermalink }}">{{ .Params.categories | upper }}</a></span>
+    </div>
+    <h1 class="{{ partial "get-colour-class.html" .Params.colours }}">{{ .Title }} ({{ .Params.colours }})</h1>
+    <p><a href="https://www.openstreetmap.org/?&mlat={{ .Params.lat }}&mlon={{ .Params.lng }}#map=17/{{ .Params.lat }}/{{ .Params.lng }}">地圖</a></p>
+  </header>
+  {{ .Content }}
+</article>
+
+{{ end }}

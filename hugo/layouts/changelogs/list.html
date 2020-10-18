@@ -1,0 +1,19 @@
+{{ define "main" }}
+
+{{ $Pages := .Pages }}
+
+<article>
+  <header><h1>{{ .Title | default "Posts" | humanize }}</h1></header>
+  <ul class="archive">
+    {{- range $Pages }}
+    <li>
+      <a href="{{ .Permalink }}">
+        {{ if .Date }}<time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2006-01-02" }}</time>{{ end }}
+      </a>
+    </li>
+    {{- end }}
+  </ul>
+  {{ .Content }}
+</article>
+
+{{ end }}

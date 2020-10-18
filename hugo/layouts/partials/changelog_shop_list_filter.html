@@ -1,0 +1,16 @@
+<ul class="relaxed-block-list">
+{{- range $shop := where .shops "category" .comparison .category }}
+{{- $pageFileName := .file_name }}
+{{- with $.context.Site.GetPage "shops" }}
+  {{- with .GetPage $pageFileName }}
+    <li class="{{ partial "get-colour-class.html" .Params.colours }}">
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a><span class="tag">{{ .Params.districts }}</span><span class="tag">{{ .Params.categories }}</span><span class="tag">{{ if (isset $shop "from_colour") and (isset $shop "to_colour") }}{{ $shop.from_colour }}→{{ $shop.to_colour }}{{ else }}{{ .Params.colours }}{{ end }}</span>
+    </li>
+  {{- else }}
+    <li class="{{ partial "get-colour-class.html" $shop.colour }}">
+      {{ $shop.title }} <span class="tag">{{ $shop.district }}</span><span class="tag">{{ $shop.category }}</span><span class="tag">{{ if (isset $shop "from_colour") and (isset $shop "to_colour") }}{{ $shop.from_colour }}→{{ $shop.to_colour }}{{ else }}{{ $shop.colour }}{{ end }}</span>
+    </li>
+  {{- end }}
+{{- end }}
+{{- end }}
+</ul>

@@ -1,0 +1,27 @@
+{{ define "main" }}
+
+{{ $Pages := .Pages }}
+
+<article>
+  <header><h1>{{ .Title | default "Posts" | humanize }}</h1></header>
+  <ul class="box-list">
+    {{- range $Pages }}
+    {{- if eq .Title "食肆" }}
+    <li>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </li>
+    {{- end }}
+    {{- end }}
+
+    {{- range $Pages }}
+    {{- if ne .Title "食肆" }}
+    <li>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </li>
+    {{- end }}
+    {{- end }}
+  </ul>
+  {{ .Content }}
+</article>
+
+{{ end }}

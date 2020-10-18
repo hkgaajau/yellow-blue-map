@@ -1,0 +1,93 @@
+{{ define "main" }}
+
+<article>
+  <header>
+    <h1>改動</h1>
+    <p>{{ if ($.Param "author") }}{{ $.Param "author" }}{{ end }}{{ if .Date }}<time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ if ($.Param "author") }} | {{ end }}{{ .Date.Format "January 02, 2006" }}</time>{{ end }}</p>
+  </header>
+  <ul class="box-list">
+    {{- if .Params.added }}
+    <li><a href="#added">新增商店</a></li>
+    {{- end }}
+    {{- if .Params.deleted }}
+    <li><a href="#deleted">刪除商店</a></li>
+    {{- end }}
+    {{- if .Params.changed_colours }}
+    <li><a href="#changed-colours">轉色商店</a></li>
+    {{- end }}
+  </ul>
+  {{- if .Params.added }}
+    <h2 id="added">新增商店</h2>
+    <ul class="box-list">
+      {{- range .Site.Data.lists.colours }}
+      {{- $colour_chi := index $.Site.Data.lists.colour_mappings . }}
+      <li><a href="#added-{{ . }}">{{ $colour_chi }}</a></li>
+      {{- end }}
+    </ul>
+    {{- range .Site.Data.lists.colours }}
+      {{- $colour_chi := index $.Site.Data.lists.colour_mappings . }}
+      <h3 id="added-{{ . }}">{{ $colour_chi }}</h3>
+      <ul class="box-list">
+        <li><a href="#added-{{ . }}-food">食肆</a></li>
+        <li><a href="#added-{{ . }}-others">其它</a></li>
+      </ul>
+      {{- $shops := where $.Params.added "colour" $colour_chi }}
+      <h4 id="added-{{ . }}-food">食肆</h4>
+      {{ partial "changelog_shop_list_filter.html" (dict "context" $ "shops" $shops "comparison" "eq" "category" "食肆" ) }}
+      <h4 id="added-{{ . }}-others">其它</h4>
+      {{ partial "changelog_shop_list_filter.html" (dict "context" $ "shops" $shops "comparison" "ne" "category" "食肆" ) }}
+    {{- end }}
+  {{- end }}
+  {{- if .Params.deleted }}
+    <h2 id="deleted">刪除商店</h2>
+    <ul class="box-list">
+      {{- range .Site.Data.lists.colours }}
+      {{- $colour_chi := index $.Site.Data.lists.colour_mappings . }}
+      <li><a href="#deleted-{{ . }}">{{ $colour_chi }}</a></li>
+      {{- end }}
+    </ul>
+    {{- range .Site.Data.lists.colours }}
+      {{- $colour_chi := index $.Site.Data.lists.colour_mappings . }}
+      <h3 id="deleted-{{ . }}">{{ $colour_chi }}</h3>
+      <ul class="box-list">
+        <li><a href="#deleted-{{ . }}-food">食肆</a></li>
+        <li><a href="#deleted-{{ . }}-others">其它</a></li>
+      </ul>
+      {{- $shops := where $.Params.deleted "colour" $colour_chi }}
+      <h4 id="deleted-{{ . }}-food">食肆</h4>
+      {{ partial "changelog_shop_list_filter.html" (dict "context" $ "shops" $shops "comparison" "eq" "category" "食肆" ) }}
+      <h4 id="deleted-{{ . }}-others">其它</h4>
+      {{ partial "changelog_shop_list_filter.html" (dict "context" $ "shops" $shops "comparison" "ne" "category" "食肆" ) }}
+    {{- end }}
+  {{- end }}
+  {{- if .Params.changed_colours }}
+  <h2 id="changed-colours">轉色商店</h2>
+  <!-- <div>
+    {{- range .Params.changed_colours }}
+    <p>{{ .title }} - {{ .district }} - {{ .category }} - {{ .from_colour }} -&gt; {{ .to_colour }}</p>
+    {{- end }}
+  </div> -->
+  <ul class="box-list">
+    {{- range .Site.Data.lists.colours }}
+    {{- $colour_chi := index $.Site.Data.lists.colour_mappings . }}
+    <li><a href="#changed-{{ . }}">{{ $colour_chi }}</a></li>
+    {{- end }}
+  </ul>
+  {{- range .Site.Data.lists.colours }}
+    {{- $colour_chi := index $.Site.Data.lists.colour_mappings . }}
+    <h3 id="changed-{{ . }}">{{ $colour_chi }}</h3>
+    <ul class="box-list">
+      <li><a href="#changed-{{ . }}-food">食肆</a></li>
+      <li><a href="#changed-{{ . }}-others">其它</a></li>
+    </ul>
+    {{- $shops := where $.Params.changed_colours "to_colour" $colour_chi }}
+    <h4 id="changed-{{ . }}-food">食肆</h4>
+    {{ partial "changelog_shop_list_filter.html" (dict "context" $ "shops" $shops "comparison" "eq" "category" "食肆" ) }}
+    <h4 id="changed-{{ . }}-others">其它</h4>
+    {{ partial "changelog_shop_list_filter.html" (dict "context" $ "shops" $shops "comparison" "ne" "category" "食肆" ) }}
+  {{- end }}
+  {{- end }}
+  {{- .Content }}
+</article>
+
+{{ end }}

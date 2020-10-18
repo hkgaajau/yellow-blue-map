@@ -1,0 +1,38 @@
+{{- $colour := .colour}}
+{{- $groupedCategoryPages := .pages.GroupByParam "categories" }}
+
+<ul class="box-list">
+{{- range $groupedCategoryPages}}
+{{- if eq .Key "食肆" }}
+<li><a href="#{{ $colour }}_{{ .Key }}">{{ .Key }}</a></li>
+{{- end }}
+{{- end }}
+
+{{- range $groupedCategoryPages}}
+{{- if ne .Key "食肆" }}
+<li><a href="#{{ $colour }}_{{ .Key }}">{{ .Key }}</a></li>
+{{- end }}
+{{- end }}
+</ul>
+
+{{- range $groupedCategoryPages}}
+{{- if eq .Key "食肆" }}
+<h3 id="{{ $colour }}_{{ .Key }}">{{ .Key }}</h3>
+<ul class="relaxed-block-list">
+{{- range .Pages }}
+{{ partial "list-item-shop.html" . }}
+{{- end }}
+</ul>
+{{- end }}
+{{- end }}
+
+{{- range $groupedCategoryPages}}
+{{- if ne .Key "食肆" }}
+<h3 id="{{ $colour }}_{{ .Key }}">{{ .Key }}</h3>
+<ul class="relaxed-block-list">
+{{- range .Pages }}
+{{ partial "list-item-shop.html" . }}
+{{- end }}
+</ul>
+{{- end }}
+{{- end }}

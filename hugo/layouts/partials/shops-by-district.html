@@ -1,0 +1,17 @@
+{{- $colour := .colour}}
+{{- $groupedCategoryPages := .pages.GroupByParam "districts" }}
+
+<ul class="box-list">
+{{- range $groupedCategoryPages}}
+<li><a href="#{{ $colour }}_{{ .Key }}">{{ .Key }}</a></li>
+{{- end }}
+</ul>
+
+{{- range $groupedCategoryPages}}
+<h3 id="{{ $colour }}_{{ .Key }}">{{ .Key }}</h3>
+<ul class="relaxed-block-list">
+{{- range .Pages }}
+{{ partial "list-item-shop.html" . }}
+{{- end }}
+</ul>
+{{- end }}

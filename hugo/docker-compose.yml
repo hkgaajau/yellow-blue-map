@@ -1,0 +1,9 @@
+version: '3'
+services:
+  web:
+    image: klakegg/hugo:0.62.0-alpine
+    command: server
+    ports:
+    - "1313:1313"
+    volumes:
+    - .:/src

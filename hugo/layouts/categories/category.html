@@ -1,0 +1,22 @@
+{{ define "main" }}
+
+{{ $Pages := .Pages }}
+
+<article>
+  <header><h1>{{ .Title | default "Posts" | humanize }}</h1></header>
+  {{- $colours := slice "黃店" "綠店" "藍店" }}
+  <ul class="box-list">
+    {{- range $colours }}
+    <li><a href="#{{ . }}">{{ . }}</a></li>
+    {{- end }}
+  </ul>
+  {{- range $colours }}
+  <section>
+  <h2 id="{{ . }}">{{ . }}</h2>
+  {{ partial "shops-by-district.html" (dict "colour" . "pages" (where $Pages "Params.colours" .)) }}
+  </section>
+  {{- end }}
+  {{ .Content }}
+</article>
+
+{{ end }}
