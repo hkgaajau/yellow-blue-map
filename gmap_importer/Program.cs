@@ -102,7 +102,7 @@ namespace gmap_importer
                     // handle shop name collision cases
                     var nameCountDict = new Dictionary<string, int>();
 
-                    var invalidFileNameChars = new char[] { '<', '>', ':', '"', '/', '\\', '|', '?', '*', '#', '.' };
+                    var invalidFileNameChars = new HashSet<char> { '<', '>', ':', '"', '/', '\\', '|', '?', '*', '#', '.', '\r', '\n' };
 
                     var reasonToEndRegex = new Regex(@"\b(原因|官方資訊)[\s\S]+", RegexOptions.Compiled);
 
@@ -110,11 +110,53 @@ namespace gmap_importer
 
                     foreach (var placemark in kml.Flatten().OfType<Placemark>()) // for testing: .Take(200))
                     {
-                        // remove newlines from name
-                        var name = placemark.Name.Replace("\r", "").Replace("\n", "");
+                        var lat = 0.0;
+                        var lng = 0.0;
+                        var district = "不詳";
+                        if (placemark.Geometry is SharpKml.Dom.Point point)
+                        {
+                            lat = point.Coordinate.Latitude;
+                            lng = point.Coordinate.Longitude;
 
-                        // remove invalid char from file name
-                        var fileName = string.Concat(name.Split(invalidFileNameChars)).Replace(' ', '-');
+                            foreach (var entry in districtLocators)
+                            {
+                                if (PointOnGeometryLocatorExtensions.Intersects(entry.Value, new NetTopologySuite.Geometries.Coordinate(lng, lat)))
+                                {
+                                    district = entry.Key;
+                                    break;
+                                }
+                            }
+                        }
+
+                        var nameBuilder = new StringBuilder(100);
+                        var fileNameBuilder = new StringBuilder(100);
+
+                        foreach (char c in placemark.Name)
+                        {
+                            // remove newlines for shop name
+                            if (c != '\r' && c != '\n')
+                            {
+                                nameBuilder.Append(c);
+                            }
+
+                            // remove invalid chars for file name
+                            if (!invalidFileNameChars.Contains(c))
+                            {
+                                if (c == ' ')
+                                {
+                                    // replace space in file name
+                                    fileNameBuilder.Append('-');
+                                }
+                                else
+                                {
+                                    fileNameBuilder.Append(c);
+                                }
+                            }
+                        }
+
+                        // trim both names and prepend lat-lng to file name
+                        var name = nameBuilder.ToString().Trim();
+                        var fileName = $"{lat.ToString("0.000")}-{lng.ToString("0.000")}-{fileNameBuilder.ToString().Trim('-')}";
 
                         // truncate file name to avoid crashing netlify build
                         var fileNameStringInfo = new StringInfo(fileName);
@@ -154,24 +196,6 @@ namespace gmap_importer
 
                             // 2: shop colour
                             colour = colourMapping[match.Groups[2].Value];
-                        }
-
-                        var lat = 0.0;
-                        var lng = 0.0;
-                        var district = "不詳";
-                        if (placemark.Geometry is SharpKml.Dom.Point point)
-                        {
-                            lat = point.Coordinate.Latitude;
-                            lng = point.Coordinate.Longitude;
-
-                            foreach (var entry in districtLocators)
-                            {
-                                if (PointOnGeometryLocatorExtensions.Intersects(entry.Value, new NetTopologySuite.Geometries.Coordinate(lng, lat)))
-                                {
-                                    district = entry.Key;
-                                    break;
-                                }
-                            }
                         }
 
                         var description = placemark.Description?.Text;
