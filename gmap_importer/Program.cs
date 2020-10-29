@@ -106,7 +106,7 @@ namespace gmap_importer
 
                     var reasonToEndRegex = new Regex(@"\b(原因|官方資訊)[\s\S]+", RegexOptions.Compiled);
 
-                    var hyperlinkRegex = new Regex(@"\b(https?://[^ <>()""]+)", RegexOptions.Compiled);
+                    var hyperlinkRegex = new Regex(@"\b(?<!"")(https?://[^ <>()""]+)", RegexOptions.Compiled);
 
                     foreach (var placemark in kml.Flatten().OfType<Placemark>()) // for testing: .Take(200))
                     {
