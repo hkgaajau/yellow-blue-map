@@ -332,6 +332,7 @@ namespace gmap_importer
             shopTypeMappingBuilder.Add("1854", "模型");
             shopTypeMappingBuilder.Add("1855", "製造");
             shopTypeMappingBuilder.Add("1860", "教育");
+            shopTypeMappingBuilder.Add("1861", "潛水");
             shopTypeMappingBuilder.Add("1868", "煙");
             shopTypeMappingBuilder.Add("1870", "潛水");
             shopTypeMappingBuilder.Add("1875", "壁球");
