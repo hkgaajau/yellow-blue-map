@@ -296,6 +296,7 @@ namespace gmap_importer
             shopTypeMappingBuilder.Add("1604", "工作坊");
             shopTypeMappingBuilder.Add("1609", "網頁設計");
             shopTypeMappingBuilder.Add("1613", "珠寶");
+            shopTypeMappingBuilder.Add("1624", "醫療");
             shopTypeMappingBuilder.Add("1635", "話劇");
             shopTypeMappingBuilder.Add("1637", "音樂");
             shopTypeMappingBuilder.Add("1639", "發展中心");
