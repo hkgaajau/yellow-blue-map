@@ -22,3 +22,7 @@ menu:
     url: categories/
   - name: 分區
     url: districts/
+outputs:
+  term:
+  - HTML
+  - JSON
