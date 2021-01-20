@@ -44,11 +44,14 @@ namespace gmap_importer
 
             // custom polygon for shops on map that have no physical presence
             var virtualShopCoordinates = new Coordinate[] {
-                new Coordinate(114.0555709, 22.308328),
-                new Coordinate(114.0567725, 22.2557509),
-                new Coordinate(114.1012328, 22.2557509),
-                new Coordinate(114.1359084, 22.3081692),
-                new Coordinate(114.0555709, 22.308328)
+                new Coordinate(114.0566591, 22.3235484),
+                new Coordinate(114.1542176, 22.3105200),
+                new Coordinate(114.1533560, 22.2981202),
+                new Coordinate(114.1337037, 22.2922693),
+                new Coordinate(114.1169433, 22.2812754),
+                new Coordinate(114.1167716, 22.2423337),
+                new Coordinate(114.0575151, 22.2418568),
+                new Coordinate(114.0566591, 22.3235484),
             };
             var virtualShopPolygon = new NetTopologySuite.Geometries.Polygon(new NetTopologySuite.Geometries.LinearRing(virtualShopCoordinates));
             districtLocators.Add("網上商店", new IndexedPointInAreaLocator(virtualShopPolygon));
