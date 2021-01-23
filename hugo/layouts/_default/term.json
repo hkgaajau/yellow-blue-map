@@ -1,0 +1,5 @@
+{{- $.Scratch.Add "index" slice -}}
+{{- range $index, $element := .Data.Pages -}}
+    {{- $.Scratch.Add "index" (dict "id" $index "name" $element.Name "colour" $element.Params.colours "district" $element.Params.districts "category" $element.Params.categories "lat" $element.Params.lat "lng" $element.Params.lng "link" $element.RelPermalink) -}}
+{{- end -}}
+{{- $.Scratch.Get "index" | jsonify -}}

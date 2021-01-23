@@ -1,0 +1,5 @@
+minify:
+  disableHTML: true
+  disableSVG: true
+  disableXML: true
+  minifyOutput: true

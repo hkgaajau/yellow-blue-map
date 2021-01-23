@@ -5,6 +5,7 @@
     <h1>改動</h1>
     <p>{{ if ($.Param "author") }}{{ $.Param "author" }}{{ end }}{{ if .Date }}<time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ if ($.Param "author") }} | {{ end }}{{ .Date.Format "January 02, 2006" }}</time>{{ end }}</p>
   </header>
+  <h2>目錄</h2>
   <ul class="box-list">
     {{- if .Params.added }}
     <li><a href="#added">新增商店</a></li>

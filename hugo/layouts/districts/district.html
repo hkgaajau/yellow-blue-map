@@ -4,7 +4,9 @@
 
 <article>
   <header><h1>{{ .Title | default "Posts" | humanize }}</h1></header>
+  {{ partial "map-placeholder.html" }}
   {{- $colours := slice "黃店" "綠店" "藍店" }}
+  <h2>目錄</h2>
   <ul class="box-list">
     {{- range $colours }}
     <li><a href="#{{ . }}">{{ . }}</a></li>
@@ -18,5 +20,7 @@
   {{- end }}
   {{ .Content }}
 </article>
-
+{{ end }}
+{{ define "js" }}
+{{ partial "draw-map.html" }}
 {{ end }}

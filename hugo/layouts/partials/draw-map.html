@@ -1,0 +1,11 @@
+{{- $leafletCss := resources.Get "leaflet/leaflet.css" }}
+{{- $leafletGpsCss := resources.Get "leaflet/leaflet-gps.src.css" }}
+{{- $leafletBundleCss := slice $leafletCss $leafletGpsCss | resources.Concat "leaflet/leaflet-bundle.css" | minify }}
+<link rel="stylesheet" href="{{ $leafletBundleCss.RelPermalink }}" />
+{{- $leafletJs := resources.Get "leaflet/leaflet.src.js" }}
+{{- $leafletZoomFsJs := resources.Get "leaflet/leaflet.zoomfs.js" }}
+{{- $leafletGpsJs := resources.Get "leaflet/leaflet-gps.src.js" }}
+{{- $leafletBundleJs := slice $leafletJs $leafletZoomFsJs $leafletGpsJs | resources.Concat "leaflet/leaflet-bundle.js" | minify }}
+<script src="{{ $leafletBundleJs.RelPermalink }}"></script>
+{{- $drawMapJs := resources.Get "js/draw-map.js" | minify }}
+<script src="{{ $drawMapJs.RelPermalink }}"></script>

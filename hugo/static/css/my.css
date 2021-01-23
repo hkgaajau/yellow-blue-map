@@ -92,3 +92,20 @@ footer > :last-child {
 .flex {
     display: flex;
 }
+
+#map.js {
+    height: 50vh;
+    min-height: 300px;
+    max-height: 500px;
+}
+#map.js.leaflet-fullscreen {
+    min-height: 0;
+    max-height: none;
+}
+#map.js > .fallback {
+    display: none;
+}
+
+body.noscroll {
+    overflow: hidden;
+}
