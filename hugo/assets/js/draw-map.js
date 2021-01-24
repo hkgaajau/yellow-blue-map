@@ -19,7 +19,7 @@ xhr.onload = function () {
   var latAvg = latSum / data.length
   var lngAvg = lngSum / data.length
 
-  var tileLayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  var tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
     subdomains: ['a', 'b', 'c']
   })
