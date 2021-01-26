@@ -31,31 +31,20 @@ xhr.onload = function () {
     '綠店': []
   }
 
-  var generateMarkerIcon = function (colour) {
-    markerHtmlStyles = 'background-color: ' + colour + ';' +
-      'width: 1rem;' +
-      'height: 1rem;' +
-      'display: block;' +
-      'left: -0.5rem;' +
-      'top: -0.5rem;' +
-      'position: relative;' +
-      'border-radius: 1rem 1rem 0;' +
-      'transform: rotate(45deg);' +
-      'border: 1px solid #FFFFFF'
-
+  var generateMarkerIcon = function (backgroundColourClass) {
     return L.divIcon({
       className: '',
       iconAnchor: [0, 24],
       labelAnchor: [-6, 0],
       popupAnchor: [0, -36],
-      html: '<span style="' + markerHtmlStyles + '"></span>'
+      html: '<span class="marker ' + backgroundColourClass + '"></span>'
     })
   }
 
   var markerMap = {
-    '黃店': generateMarkerIcon('rgb(250, 216, 33)'),
-    '藍店': generateMarkerIcon('rgb(41, 170, 225)'),
-    '綠店': generateMarkerIcon('rgb(58, 179, 74)')
+    '黃店': generateMarkerIcon('yellow-bg'),
+    '藍店': generateMarkerIcon('blue-bg'),
+    '綠店': generateMarkerIcon('green-bg')
   }
 
   for (data_i = 0; data_i < data.length; ++data_i) {
