@@ -322,6 +322,7 @@ namespace gmap_importer
             shopTypeMappingBuilder.Add("1762", "甜品");
             shopTypeMappingBuilder.Add("1764", "燒烤");
             shopTypeMappingBuilder.Add("1765", "行山");
+            shopTypeMappingBuilder.Add("1769", "營銷");
             shopTypeMappingBuilder.Add("1773", "跳舞");
             shopTypeMappingBuilder.Add("1777", "潛水");
             shopTypeMappingBuilder.Add("1778", "寵物");
