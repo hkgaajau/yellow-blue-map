@@ -265,6 +265,7 @@ namespace gmap_importer
             shopTypeMappingBuilder.Add("1516", "髮廊");
             shopTypeMappingBuilder.Add("1517", "飲品");
             shopTypeMappingBuilder.Add("1522", "單車");
+            shopTypeMappingBuilder.Add("1525", "其它");
             shopTypeMappingBuilder.Add("1526", "書店");
             shopTypeMappingBuilder.Add("1531", "營銷");
             shopTypeMappingBuilder.Add("1534", "咖啡");
@@ -312,6 +313,7 @@ namespace gmap_importer
             shopTypeMappingBuilder.Add("1696", "足球");
             shopTypeMappingBuilder.Add("1699", "行李");
             shopTypeMappingBuilder.Add("1701", "游泳");
+            shopTypeMappingBuilder.Add("1703", "其它");
             shopTypeMappingBuilder.Add("1707", "網球");
             shopTypeMappingBuilder.Add("1722", "運輸");
             shopTypeMappingBuilder.Add("1725", "網吧");
@@ -330,6 +332,7 @@ namespace gmap_importer
             shopTypeMappingBuilder.Add("1800", "烹飪");
             shopTypeMappingBuilder.Add("1820", "電腦");
             shopTypeMappingBuilder.Add("1821", "洗衣");
+            shopTypeMappingBuilder.Add("1825", "武術");
             shopTypeMappingBuilder.Add("1838", "行山");
             shopTypeMappingBuilder.Add("1845", "印刷");
             shopTypeMappingBuilder.Add("1847", "寵物");
