@@ -17,5 +17,5 @@ cd ..
 
 # commit newly generated files
 git add hugo/content/changelogs
-printf -v date '%(%Y-%m-%d)T\n' -1
+date=$(date +%F)
 git commit -m "Update shops info as at $date"
