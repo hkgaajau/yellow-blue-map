@@ -61,7 +61,8 @@ xhr.onload = function () {
     center: [latAvg, lngAvg],
     zoom: 16,
     layers: [tileLayer, yellowGroup, blueGroup, greenGroup],
-    zoomControl: false
+    zoomControl: false,
+    tap: false
   })
 
   map.addControl(new L.Control.Gps({ autoCenter: true }))
