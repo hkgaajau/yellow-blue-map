@@ -248,6 +248,7 @@ namespace gmap_importer
             var colourMappingBuilder = ImmutableDictionary.CreateBuilder<string, string>();
             colourMappingBuilder.Add("FFD600", "黃店");
             colourMappingBuilder.Add("FFEA00", "黃店"); // temp fix for incorrect colour in source file
+            colourMappingBuilder.Add("FBC02D", "黃店"); // temp fix for incorrect colour in source file
             colourMappingBuilder.Add("0288D1", "藍店");
             colourMappingBuilder.Add("558B2F", "綠店");
             return colourMappingBuilder.ToImmutable();
