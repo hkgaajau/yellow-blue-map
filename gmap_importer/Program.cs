@@ -289,6 +289,7 @@ namespace gmap_importer
             shopTypeMappingBuilder.Add("1581", "燃油");
             shopTypeMappingBuilder.Add("1582", "花店");
             shopTypeMappingBuilder.Add("1584", "生活精品");
+            shopTypeMappingBuilder.Add("1585", "哥爾夫球");
             shopTypeMappingBuilder.Add("1588", "War Game");
             shopTypeMappingBuilder.Add("1589", "健身");
             shopTypeMappingBuilder.Add("1590", "維修");
