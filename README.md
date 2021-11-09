@@ -12,7 +12,7 @@ This project has 2 parts:
 
 1. Static site generator (using Hugo) for generating the shop lists by shop category, district and colour and any other useful materials
 
-The data files are updated weekly from Google maps and changes are published to [netlify mirror](https://yellow-blue-map.netlify.app) automatically.
+The data files are updated manually and weekly from Google maps. Changes in this repo are published to [netlify mirror](https://yellow-blue-map.netlify.app) automatically.
 
 ## Getting Started
 
@@ -27,7 +27,6 @@ Feel free to look around the code and make suggestions/pull requests. All contri
 
 ## To-do
 
-1. Map visualization of yellow/blue shops in region
 1. JSON generation for use by other existing apps
 1. Add machine-readable metadata (e.g. RDFa) for easier consumption
 1. Transition from Google My Maps to this repo for collaboration
