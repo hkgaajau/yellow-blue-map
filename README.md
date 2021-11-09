@@ -16,7 +16,7 @@ The data files are updated weekly from Google maps and changes are published to 
 
 ## Getting Started
 
-To test out the update process (you will need [.Net Core SDK 3.1](https://dotnet.microsoft.com/download) and [Hugo](https://gohugo.io/getting-started/installing/)):
+To test out the update process (you will need [.NET 6 SDK](https://dotnet.microsoft.com/download) and [Hugo](https://gohugo.io/getting-started/installing/)):
 
 1. Run `update.sh`
 1. Data files are generated in hugo/content/shops/
