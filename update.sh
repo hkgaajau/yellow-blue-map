@@ -4,9 +4,12 @@ curl -o google_export.kmz 'https://www.google.com/maps/d/kml?mid=11zThwHjrFwBlNC
 dotnet run
 cd ..
 
-# generate diff
+# find previous commit with shop update
+previous_commit=$(git log --all --grep='Update shops info' --format='%H' | head -1)
+
+# generate diff against previous commit
 git add hugo/content/shops
-git -c core.quotePath=false diff --cached --word-diff=porcelain > diff.txt
+git -c core.quotePath=false diff --cached --word-diff=porcelain $previous_commit > diff.txt
 mv diff.txt changelog_generator/
 
 # generate changelog
