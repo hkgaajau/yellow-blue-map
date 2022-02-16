@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # update from gmap
 cd gmap_importer
 curl -o google_export.kmz 'https://www.google.com/maps/d/kml?mid=11zThwHjrFwBlNCStMQavBdryuESKzcdR'
