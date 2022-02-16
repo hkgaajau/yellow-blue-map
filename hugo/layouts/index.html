@@ -12,6 +12,7 @@
   <p>綠店: {{ len (index .Site.Taxonomies.colours "綠店") }}間</p>
   <p>藍店: {{ len (index .Site.Taxonomies.colours "藍店") }}間</p>
   <p>總數: {{ len $Pages }}間</p>
+  <p>網站最後產生日期: {{ now.Format "2006-01-02" }}</p>
   {{ .Content }}
 </article>
 
