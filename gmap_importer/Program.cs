@@ -261,7 +261,7 @@ namespace gmap_importer
             shopTypeMappingBuilder.Add("1504", "旅遊");
             shopTypeMappingBuilder.Add("1507", "寵物");
             shopTypeMappingBuilder.Add("1509", "畫室");
-            shopTypeMappingBuilder.Add("1511", "氣球");
+            shopTypeMappingBuilder.Add("1511", "派對");
             shopTypeMappingBuilder.Add("1512", "保險");
             shopTypeMappingBuilder.Add("1516", "髮廊");
             shopTypeMappingBuilder.Add("1517", "飲品");
@@ -276,6 +276,7 @@ namespace gmap_importer
             shopTypeMappingBuilder.Add("1540", "遊戲");
             shopTypeMappingBuilder.Add("1546", "物業");
             shopTypeMappingBuilder.Add("1549", "服裝");
+            shopTypeMappingBuilder.Add("1551", "其它");
             shopTypeMappingBuilder.Add("1553", "肉類");
             shopTypeMappingBuilder.Add("1555", "找換");
             shopTypeMappingBuilder.Add("1557", "牙醫");
@@ -302,6 +303,7 @@ namespace gmap_importer
             shopTypeMappingBuilder.Add("1604", "工作坊");
             shopTypeMappingBuilder.Add("1609", "網頁設計");
             shopTypeMappingBuilder.Add("1613", "珠寶");
+            shopTypeMappingBuilder.Add("1615", "水上活動");
             shopTypeMappingBuilder.Add("1624", "醫療");
             shopTypeMappingBuilder.Add("1635", "話劇");
             shopTypeMappingBuilder.Add("1637", "音樂");
@@ -311,7 +313,8 @@ namespace gmap_importer
             shopTypeMappingBuilder.Add("1665", "裝修");
             shopTypeMappingBuilder.Add("1670", "教堂");
             shopTypeMappingBuilder.Add("1683", "鞋店");
-            shopTypeMappingBuilder.Add("1684", "其它");
+            shopTypeMappingBuilder.Add("1684", "雜貨");
+            shopTypeMappingBuilder.Add("1685", "雜貨");
             shopTypeMappingBuilder.Add("1696", "足球");
             shopTypeMappingBuilder.Add("1699", "行李");
             shopTypeMappingBuilder.Add("1701", "游泳");
@@ -328,12 +331,13 @@ namespace gmap_importer
             shopTypeMappingBuilder.Add("1765", "行山");
             shopTypeMappingBuilder.Add("1769", "營銷");
             shopTypeMappingBuilder.Add("1773", "跳舞");
-            shopTypeMappingBuilder.Add("1777", "潛水");
+            shopTypeMappingBuilder.Add("1777", "水上活動");
             shopTypeMappingBuilder.Add("1778", "寵物");
             shopTypeMappingBuilder.Add("1788", "劍擊");
             shopTypeMappingBuilder.Add("1800", "烹飪");
             shopTypeMappingBuilder.Add("1820", "電腦");
             shopTypeMappingBuilder.Add("1821", "洗衣");
+            shopTypeMappingBuilder.Add("1822", "武術");
             shopTypeMappingBuilder.Add("1825", "武術");
             shopTypeMappingBuilder.Add("1838", "行山");
             shopTypeMappingBuilder.Add("1845", "印刷");
@@ -342,12 +346,13 @@ namespace gmap_importer
             shopTypeMappingBuilder.Add("1854", "模型");
             shopTypeMappingBuilder.Add("1855", "製造");
             shopTypeMappingBuilder.Add("1860", "教育");
-            shopTypeMappingBuilder.Add("1861", "潛水");
+            shopTypeMappingBuilder.Add("1861", "水上活動");
+            shopTypeMappingBuilder.Add("1866", "滑板");
             shopTypeMappingBuilder.Add("1868", "煙");
-            shopTypeMappingBuilder.Add("1870", "潛水");
+            shopTypeMappingBuilder.Add("1870", "水上活動");
             shopTypeMappingBuilder.Add("1875", "壁球");
             shopTypeMappingBuilder.Add("1879", "酒類");
-            shopTypeMappingBuilder.Add("1880", "滑浪");
+            shopTypeMappingBuilder.Add("1880", "水上活動");
             shopTypeMappingBuilder.Add("1886", "蔬果");
             shopTypeMappingBuilder.Add("1890", "排球");
             return shopTypeMappingBuilder.ToImmutable();
