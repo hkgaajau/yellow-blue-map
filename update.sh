@@ -7,7 +7,7 @@ dotnet run
 cd ..
 
 # find previous commit with shop update
-previous_commit=$(git log --all --grep='Update shops info' --format='%H' | head -1)
+previous_commit=$(git log --grep='Update shops info' --format='%H' | head -1)
 
 # generate diff against previous commit
 git add hugo/content/shops
