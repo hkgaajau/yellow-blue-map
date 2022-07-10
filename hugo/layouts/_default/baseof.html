@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode | default "en" }}">
-<title>{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
+<title>{{ block "title" . }}{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
 <meta charset="utf-8">
 {{ hugo.Generator }}
 {{- if or .Description .Site.Params.description }}
