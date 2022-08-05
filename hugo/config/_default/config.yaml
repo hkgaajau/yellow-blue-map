@@ -23,6 +23,9 @@ menu:
   - name: 分區
     url: districts/
 outputs:
+  section:
+  - HTML
+  - JSON
   term:
   - HTML
   - JSON
