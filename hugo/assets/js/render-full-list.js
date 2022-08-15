@@ -13,10 +13,7 @@ fetch('/shops/index.json')
   .then(resp => resp.json())
   .then(json => {
     shopList = json
-
-    hyperList = new HyperList(container, generateListOption(shopList))
-
-    document.getElementById('list-container').appendChild(container)
+    refreshHyperList();
   })
   .then(() => {
     document.getElementById('list-container').classList.add('js')
@@ -27,9 +24,7 @@ document.getElementById('search-shop-textbox').addEventListener('input', functio
     clearTimeout(timeout)
 
     timeout = setTimeout(function () {
-      const searchTerm = document.getElementById('search-shop-textbox').value
-      const filteredShopList = searchTerm ? shopList.filter(s => s.name.toLowerCase().includes(searchTerm.toLowerCase())) : shopList
-      hyperList.refresh(container, generateListOption(filteredShopList))
+      refreshHyperList();
     }, 500)
   }
 }, false)
@@ -57,4 +52,17 @@ function generateListOption(list) {
       return clonedListItem
     }
   }
+}
+
+function refreshHyperList() {
+  const searchTerm = document.getElementById('search-shop-textbox').value
+  const filteredShopList = searchTerm ? shopList.filter(s => s.name.toLowerCase().includes(searchTerm.toLowerCase())) : shopList
+
+  if (hyperList) {
+    hyperList.refresh(container, generateListOption(filteredShopList))
+  } else {
+    hyperList = new HyperList(container, generateListOption(shopList))
+    document.getElementById('list-container').appendChild(container)
+  }
+  document.getElementById('search-count').textContent = filteredShopList.length
 }
