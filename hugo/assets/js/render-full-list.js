@@ -2,9 +2,9 @@ import HyperList from 'hyperlist'
 import { colour_class_mappings as classClassMappings } from '@params'
 
 let shopList = []
-let filteredShopList = []
 
 let hyperList = null
+let timeout = null // for debouncing
 
 const container = document.createElement('ul')
 container.classList.add('relaxed-block-list')
@@ -12,18 +12,22 @@ container.classList.add('relaxed-block-list')
 fetch('/shops/index.json')
   .then(resp => resp.json())
   .then(json => {
-    filteredShopList = shopList = json
+    shopList = json
 
-    hyperList = new HyperList(container, generateListOption(filteredShopList))
+    hyperList = new HyperList(container, generateListOption(shopList))
 
     document.getElementById('list-container').appendChild(container)
   })
 
 document.getElementById('search-shop-textbox').addEventListener('input', function () {
   if (hyperList) {
-    const searchTerm = document.getElementById('search-shop-textbox').value
-    filteredShopList = shopList.filter(s => s.name.toLowerCase().includes(searchTerm.toLowerCase()))
-    hyperList.refresh(container, generateListOption(filteredShopList))
+    clearTimeout(timeout)
+
+    timeout = setTimeout(function () {
+      const searchTerm = document.getElementById('search-shop-textbox').value
+      const filteredShopList = searchTerm ? shopList.filter(s => s.name.toLowerCase().includes(searchTerm.toLowerCase())) : shopList
+      hyperList.refresh(container, generateListOption(filteredShopList))
+    }, 500)
   }
 }, false)
 
