@@ -120,3 +120,24 @@ footer > :last-child {
 body.noscroll {
     overflow: hidden;
 }
+
+#list-container {
+    height: max(20rem, 50vh);
+}
+
+.vrow {
+    left: 0px;
+    right: 0px;
+}
+
+#search-container {
+    display: flex;
+}
+
+#search-container label {
+    padding-right: 0.5rem;
+}
+
+#search-container input {
+    flex: 1;
+}
