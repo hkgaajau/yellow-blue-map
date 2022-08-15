@@ -18,6 +18,9 @@ fetch('/shops/index.json')
 
     document.getElementById('list-container').appendChild(container)
   })
+  .then(() => {
+    document.getElementById('list-container').classList.add('js')
+  })
 
 document.getElementById('search-shop-textbox').addEventListener('input', function () {
   if (hyperList) {

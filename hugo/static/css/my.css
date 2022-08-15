@@ -125,6 +125,10 @@ body.noscroll {
     height: max(20rem, 50vh);
 }
 
+#list-container.js > .fallback {
+    display: none;
+}
+
 .vrow {
     left: 0px;
     right: 0px;
