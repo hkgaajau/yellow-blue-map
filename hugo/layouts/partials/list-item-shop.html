@@ -1,3 +1,2 @@
-<li class="{{ partial "get-colour-class.html" .Params.colours }}">
-    <a href="{{ .RelPermalink }}">{{ .Title }}</a><span class="tag">{{ .Params.districts }}</span><span class="tag">{{ .Params.categories }}</span><span class="tag">{{ .Params.colours }}</span>
-</li>
+{{ $colourClass := partial "get-colour-class.html" .Params.colours }}
+{{ partial "list-item-shop-with-dict.html" (dict "colours" .Params.colours "colourClass" $colourClass "relPermalink" .RelPermalink "title" .Title "districts" .Params.districts "categories" .Params.categories) }}

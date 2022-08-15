@@ -1,9 +1,1 @@
-{{ $colour := "" }}
-{{ if eq . "黃店" }}
-{{ $colour = "yellow-bg" }}
-{{ else if eq . "綠店" }}
-{{ $colour = "green-bg" }}
-{{ else if eq . "藍店" }}
-{{ $colour = "blue-bg" }}
-{{ end }}
-{{ return $colour }}
+{{ return (index site.Data.lists.colour_class_mappings . ) }}
