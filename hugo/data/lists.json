@@ -1,0 +1,17 @@
+{
+    "colours": [
+        "yellow",
+        "blue",
+        "green"
+    ],
+    "colour_mappings": {
+        "yellow": "黃店",
+        "blue": "藍店",
+        "green": "綠店"
+    },
+    "colour_class_mappings": {
+        "黃店": "yellow-bg",
+        "藍店": "blue-bg",
+        "綠店": "green-bg"
+    }
+}
