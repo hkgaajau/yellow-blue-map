@@ -14,14 +14,18 @@ taxonomies:
   category: categories
 menu:
   main:
-  - name: 全部
+  - name: 搜尋店舖
     url: shops/
+    weight: 1
   - name: 改動
     url: changelogs/
+    weight: 4
   - name: 分類
     url: categories/
+    weight: 3
   - name: 分區
     url: districts/
+    weight: 2
 outputs:
   section:
   - HTML
