@@ -26,6 +26,12 @@ outputs:
   section:
   - HTML
   - JSON
+  - NoJsHtml
   term:
   - HTML
   - JSON
+outputFormats:
+  NoJsHtml:
+    mediaType: text/html
+    path: no-js
+    baseName: index
