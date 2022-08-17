@@ -5,7 +5,12 @@
 <article>
 <header><h1>{{ .Title | default "Posts" | humanize }}</h1></header>
 <div id="search-container"><label for="search-shop-textbox">搜尋店舖 (<span id="search-count">0</span>間):</label><input id="search-shop-textbox" type="search" placeholder="店名"></div>
-<div id="list-container"><span class="fallback">此列表需要JavaScript以改善效能</span></div>
+<div id="list-container">
+  <div class="fallback">
+    <p>此列表需要JavaScript以改善效能但你的瀏覽器似乎停用了JavaScript</p>
+    <p>你可以使用<a href='{{ (.OutputFormats.Get "NoJsHtml").RelPermalink }}'>檔案較大(約3MB)、效能較差的傳統列表</a></p>
+  </div>
+</div>
 </article>
 
 {{ $built := resources.Get "js/render-full-list.js" | js.Build (dict "targetPath" "render-full-list.js" "params" site.Data.lists) }}
