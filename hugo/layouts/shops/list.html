@@ -13,11 +13,12 @@
 </div>
 </article>
 
-{{ $built := resources.Get "js/render-full-list.js" | js.Build (dict "targetPath" "render-full-list.js" "params" site.Data.lists) }}
-<script src="{{ $built.RelPermalink }}" defer></script>
-
 <template id="list-item-template">
   {{ partial "list-item-shop-with-dict.html" (dict "colourClass" "" "relPermalink" "" "title" "" "districts" "" "categories" "" "colours" "") }}
 </template>
 
+{{ end }}
+{{ define "js" }}
+{{ $built := resources.Get "js/render-full-list.js" | js.Build (dict "targetPath" "js/render-full-list.js" "params" site.Data.lists) | minify }}
+<script src="{{ $built.RelPermalink }}" defer></script>
 {{ end }}
