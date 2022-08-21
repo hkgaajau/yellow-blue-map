@@ -9,25 +9,26 @@ let timeout = null // for debouncing
 const container = document.createElement('ul')
 container.classList.add('relaxed-block-list')
 
+// set up hidden canvas for measuring text width and calculating row height
+const canvas = document.createElement('canvas')
+canvas.style = 'display: none'
+document.body.appendChild(canvas)
+const ctx = canvas.getContext('2d')
+ctx.font = 'normal 1.1rem -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Roboto", sans-serif'
+
 fetch('/shops/index.json')
   .then(resp => resp.json())
   .then(json => {
     shopList = json
-    refreshHyperList();
+    refreshHyperList()
   })
   .then(() => {
     document.getElementById('list-container').classList.add('js')
   })
 
-document.getElementById('search-shop-textbox').addEventListener('input', function () {
-  if (hyperList) {
-    clearTimeout(timeout)
+document.getElementById('search-shop-textbox').addEventListener('input', debounceRefreshHyperList, false)
 
-    timeout = setTimeout(function () {
-      refreshHyperList();
-    }, 500)
-  }
-}, false)
+window.addEventListener('resize', debounceRefreshHyperList, false)
 
 function convertRemToPixels(rem) {
   return rem * parseFloat(getComputedStyle(document.documentElement).fontSize)
@@ -49,7 +50,23 @@ function generateListOption(list) {
       clonedListItem.querySelector('.category').textContent = item.category
       clonedListItem.querySelector('.colour').textContent = item.colour
 
-      return clonedListItem
+      // calculate actual row height for hyperlist
+      const nameWidth = ctx.measureText(item.name).width
+      const tagWidth = ctx.measureText(item.district + item.category + item.colour).width / 1.375
+      const tagMargin = convertRemToPixels(0.5) * 3
+      const textWidth = nameWidth + tagWidth + tagMargin
+
+      const containerWidth = document.getElementById('list-container').offsetWidth
+      const containerPadding = convertRemToPixels(0.3) * 2
+      const availableWidth = containerWidth - containerPadding
+
+      // row height = padding + (vertical margin)/2 + no. of lines * line height
+      const verticalMargin = (0.5 * convertRemToPixels(1.1)) * 2
+      const lines = Math.ceil(textWidth / availableWidth)
+      const lineHeight = convertRemToPixels(1.1) * 1.65
+      const rowHeight = containerPadding + verticalMargin / 2 + lines * lineHeight
+
+      return { element: clonedListItem, height: rowHeight }
     }
   }
 }
@@ -65,4 +82,12 @@ function refreshHyperList() {
     document.getElementById('list-container').appendChild(container)
   }
   document.getElementById('search-count').textContent = filteredShopList.length
+}
+
+function debounceRefreshHyperList() {
+  if (hyperList) {
+    clearTimeout(timeout)
+
+    timeout = setTimeout(refreshHyperList, 500)
+  }
 }
