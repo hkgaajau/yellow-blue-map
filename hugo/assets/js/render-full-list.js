@@ -18,6 +18,8 @@ ctx.font = 'normal 1.1rem -apple-system, BlinkMacSystemFont, "Helvetica Neue", "
 
 fetch('/shops/index.json')
   .then(resp => resp.json())
+  .then(json => updateTextWidths(json))
+  .then(json => updateRowHeights(json))
   .then(json => {
     shopList = json
     refreshHyperList()
@@ -36,7 +38,7 @@ function convertRemToPixels(rem) {
 
 function generateListOption(list) {
   return {
-    itemHeight: convertRemToPixels(2.965), // margin (/2 to simulate collapse) + padding + line height
+    itemHeight: list.map(item => item.rowHeight),
     total: list.length,
     generate(index) {
       const item = list[index]
@@ -50,28 +52,16 @@ function generateListOption(list) {
       clonedListItem.querySelector('.category').textContent = item.category
       clonedListItem.querySelector('.colour').textContent = item.colour
 
-      // calculate actual row height for hyperlist
-      const nameWidth = ctx.measureText(item.name).width
-      const tagWidth = ctx.measureText(item.district + item.category + item.colour).width / 1.375
-      const tagMargin = convertRemToPixels(0.5) * 3
-      const textWidth = nameWidth + tagWidth + tagMargin
-
-      const containerWidth = document.getElementById('list-container').offsetWidth
-      const containerPadding = convertRemToPixels(0.3) * 2
-      const availableWidth = containerWidth - containerPadding
-
-      // row height = padding + (vertical margin)/2 + no. of lines * line height
-      const verticalMargin = (0.5 * convertRemToPixels(1.1)) * 2
-      const lines = Math.ceil(textWidth / availableWidth)
-      const lineHeight = convertRemToPixels(1.1) * 1.65
-      const rowHeight = containerPadding + verticalMargin / 2 + lines * lineHeight
-
-      return { element: clonedListItem, height: rowHeight }
+      return clonedListItem
     }
   }
 }
 
-function refreshHyperList() {
+function refreshHyperList(isResize) {
+  if (isResize) {
+    updateRowHeights(shopList)
+  }
+
   const searchTerm = document.getElementById('search-shop-textbox').value
   const filteredShopList = searchTerm ? shopList.filter(s => s.name.toLowerCase().includes(searchTerm.toLowerCase())) : shopList
 
@@ -84,10 +74,42 @@ function refreshHyperList() {
   document.getElementById('search-count').textContent = filteredShopList.length
 }
 
-function debounceRefreshHyperList() {
+function debounceRefreshHyperList(event) {
   if (hyperList) {
     clearTimeout(timeout)
 
-    timeout = setTimeout(refreshHyperList, 500)
+    const isResize = event.type === 'resize'
+    timeout = setTimeout(refreshHyperList, 500, isResize)
   }
+}
+
+// calc and update text width for each row (initial load)
+function updateTextWidths(items) {
+  items.forEach(item => {
+    const nameWidth = ctx.measureText(item.name).width
+    const tagWidth = ctx.measureText(item.district + item.category + item.colour).width / 1.375
+    const tagMargin = convertRemToPixels(0.5) * 3
+
+    item.textWidth = nameWidth + tagWidth + tagMargin
+  })
+
+  return items
+}
+
+// calc and update rowHeight value for each row (initial load and on resize)
+function updateRowHeights(items) {
+  const containerWidth = document.getElementById('list-container').offsetWidth
+  const containerPadding = convertRemToPixels(0.3) * 2
+  const availableWidth = containerWidth - containerPadding
+
+  const verticalMargin = (0.5 * convertRemToPixels(1.1)) * 2
+  const lineHeight = convertRemToPixels(1.1) * 1.65
+
+  items.forEach(item => {
+    // row height = padding + (vertical margin)/2 + no. of lines * line height
+    const lines = Math.ceil(item.textWidth / availableWidth)
+    item.rowHeight = containerPadding + verticalMargin / 2 + lines * lineHeight
+  })
+
+  return items
 }
