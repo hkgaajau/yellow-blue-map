@@ -1,10 +1,10 @@
-{{ define "title" }}{{ .Date.Format "2006-01-02" }} 改動 | {{ .Site.Title }}{{ end }}
+{{ define "title" }}{{ .Date.Format "2006-01-02" }} {{ (site.GetPage .Section).Title }} | {{ .Site.Title }}{{ end }}
 
 {{ define "main" }}
 
 <article>
   <header>
-    <h1>改動</h1>
+    <h1>{{ (site.GetPage .Section).Title }}</h1>
     <p>{{ if ($.Param "author") }}{{ $.Param "author" }}{{ end }}{{ if .Date }}<time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ if ($.Param "author") }} | {{ end }}{{ .Date.Format "January 02, 2006" }}</time>{{ end }}</p>
   </header>
   <h2>目錄</h2>
