@@ -68,7 +68,7 @@ function refreshHyperList(isResize) {
   if (hyperList) {
     hyperList.refresh(container, generateListOption(filteredShopList))
   } else {
-    hyperList = new HyperList(container, generateListOption(shopList))
+    hyperList = new HyperList(container, generateListOption(filteredShopList))
     document.getElementById('list-container').appendChild(container)
   }
   document.getElementById('search-count').textContent = filteredShopList.length
