@@ -7,8 +7,9 @@
 <div id="search-container"><label for="search-shop-textbox">搜尋店舖 (<span id="search-count">0</span>間):</label><input id="search-shop-textbox" type="search" placeholder="店名"></div>
 <div id="list-container">
   <div class="fallback">
-    <p>此列表需要JavaScript以改善效能但你的瀏覽器似乎停用了JavaScript</p>
-    <p>你可以使用<a href='{{ (.OutputFormats.Get "NoJsHtml").RelPermalink }}'>檔案較大(約3MB)、效能較差的傳統列表</a></p>
+    <p class="show-when-loading">列表正在載入中，請耐心等候⋯⋯</p>
+    <p class="hide-when-loading">此列表需要JavaScript以改善效能但你的瀏覽器似乎停用了JavaScript</p>
+    <p>你也可以使用<a href='{{ (.OutputFormats.Get "NoJsHtml").RelPermalink }}'>檔案較大(約3MB)、效能較差的傳統列表</a></p>
   </div>
 </div>
 </article>

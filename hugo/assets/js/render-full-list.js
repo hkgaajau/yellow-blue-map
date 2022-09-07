@@ -16,6 +16,9 @@ document.body.appendChild(canvas)
 const ctx = canvas.getContext('2d')
 ctx.font = 'normal 1.1rem -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Roboto", sans-serif'
 
+const listContainer = document.getElementById('list-container')
+listContainer.classList.add('loading')
+
 fetch('/shops/index.json')
   .then(resp => resp.json())
   .then(json => updateTextWidths(json))
@@ -25,7 +28,8 @@ fetch('/shops/index.json')
     refreshHyperList()
   })
   .then(() => {
-    document.getElementById('list-container').classList.add('js')
+    listContainer.classList.add('js')
+    listContainer.classList.remove('loading')
   })
 
 document.getElementById('search-shop-textbox').addEventListener('input', debounceRefreshHyperList, false)
@@ -69,7 +73,7 @@ function refreshHyperList(isResize) {
     hyperList.refresh(container, generateListOption(filteredShopList))
   } else {
     hyperList = new HyperList(container, generateListOption(filteredShopList))
-    document.getElementById('list-container').appendChild(container)
+    listContainer.appendChild(container)
   }
   document.getElementById('search-count').textContent = filteredShopList.length
 }
@@ -98,7 +102,7 @@ function updateTextWidths(items) {
 
 // calc and update rowHeight value for each row (initial load and on resize)
 function updateRowHeights(items) {
-  const containerWidth = document.getElementById('list-container').offsetWidth
+  const containerWidth = listContainer.offsetWidth
   const containerPadding = convertRemToPixels(0.3) * 2
   const availableWidth = containerWidth - containerPadding
 

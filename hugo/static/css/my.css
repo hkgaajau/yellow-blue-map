@@ -129,6 +129,18 @@ body.noscroll {
     display: none;
 }
 
+.show-when-loading {
+    display: none;
+}
+
+#list-container.loading .show-when-loading {
+    display: block;
+}
+
+#list-container.loading .hide-when-loading {
+    display: none;
+}
+
 .vrow {
     left: 0px;
     right: 0px;
