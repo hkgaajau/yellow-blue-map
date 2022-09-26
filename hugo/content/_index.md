@@ -1,6 +1,5 @@
 ---
 sitemap:
   changefreq: weekly
-  priority: 1.0
-title: 店舖
+  priority: 0.8
 ---

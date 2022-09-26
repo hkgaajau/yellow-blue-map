@@ -1,6 +1,7 @@
 baseURL: ""
-disableKinds: ["RSS", "sitemap"]
+disableKinds: ["RSS"]
 disablePathToLower: true
+enableGitInfo: true
 languageCode: zh-Hant
 title: 黃藍列表
 theme: contrast-hugo
