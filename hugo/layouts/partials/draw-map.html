@@ -2,10 +2,5 @@
 <link rel="stylesheet" href="{{ $leafletCss.RelPermalink }}" />
 {{- $leafletLocateControlCss := resources.Get "leaflet.locatecontrol/css/L.Control.Locate.css" | minify }}
 <link rel="stylesheet" href="{{ $leafletLocateControlCss.RelPermalink }}" />
-{{- $leafletJs := resources.Get "leaflet/leaflet.src.js" }}
-{{- $leafletZoomFsJs := resources.Get "leaflet/leaflet.zoomfs.js" }}
-{{- $leafletGpsJs := resources.Get "leaflet/leaflet-gps.src.js" }}
-{{- $leafletBundleJs := slice $leafletJs $leafletZoomFsJs $leafletGpsJs | resources.Concat "leaflet/leaflet-bundle.js" | minify }}
-<script src="{{ $leafletBundleJs.RelPermalink }}"></script>
 {{- $drawMapJs := resources.Get "js/draw-map.js" | js.Build | minify }}
 <script src="{{ $drawMapJs.RelPermalink }}"></script>

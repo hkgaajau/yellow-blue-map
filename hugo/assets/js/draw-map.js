@@ -69,7 +69,7 @@ xhr.onload = function () {
 
   L.control.locate().addTo(map)
 
-  map.addControl(new L.Control.ZoomFS())
+  // map.addControl(new L.Control.ZoomFS())
 
   var overlayMaps = {
     '黃店': yellowGroup,
