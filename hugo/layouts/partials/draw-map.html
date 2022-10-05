@@ -1,4 +1,4 @@
-{{- $leafletCss := resources.Get "new_leaflet/leaflet.css" | minify }}
+{{- $leafletCss := resources.Get "leaflet/leaflet.css" | minify }}
 <link rel="stylesheet" href="{{ $leafletCss.RelPermalink }}" />
 {{- $leafletLocateControlCss := resources.Get "leaflet.locatecontrol/css/L.Control.Locate.css" | minify }}
 <link rel="stylesheet" href="{{ $leafletLocateControlCss.RelPermalink }}" />
