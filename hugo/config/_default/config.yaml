@@ -51,3 +51,9 @@ module:
     includeFiles: /leaflet.css
   - source: node_modules/leaflet/dist/images
     target: static/new_leaflet/images
+  - source: node_modules/leaflet.locatecontrol/dist
+    target: assets/leaflet.locatecontrol/css
+    includeFiles: /L.Control.Locate.css
+  - source: node_modules/leaflet.locatecontrol
+    target: static/leaflet.locatecontrol
+    includeFiles: /*.svg

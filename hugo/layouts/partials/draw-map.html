@@ -1,7 +1,7 @@
 {{- $leafletCss := resources.Get "new_leaflet/leaflet.css" | minify }}
 <link rel="stylesheet" href="{{ $leafletCss.RelPermalink }}" />
-{{- $leafletGpsCss := resources.Get "leaflet/leaflet-gps.src.css" | minify }}
-<link rel="stylesheet" href="{{ $leafletGpsCss.RelPermalink }}" />
+{{- $leafletLocateControlCss := resources.Get "leaflet.locatecontrol/css/L.Control.Locate.css" | minify }}
+<link rel="stylesheet" href="{{ $leafletLocateControlCss.RelPermalink }}" />
 {{- $leafletJs := resources.Get "leaflet/leaflet.src.js" }}
 {{- $leafletZoomFsJs := resources.Get "leaflet/leaflet.zoomfs.js" }}
 {{- $leafletGpsJs := resources.Get "leaflet/leaflet-gps.src.js" }}

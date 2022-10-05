@@ -1,4 +1,5 @@
 import L from 'leaflet'
+import 'leaflet.locatecontrol'
 
 var mapElement = document.getElementById('map')
 mapElement.classList.add('js')
@@ -66,7 +67,8 @@ xhr.onload = function () {
     zoomControl: false
   })
 
-  map.addControl(new L.Control.Gps({ autoCenter: true }))
+  L.control.locate().addTo(map)
+
   map.addControl(new L.Control.ZoomFS())
 
   var overlayMaps = {

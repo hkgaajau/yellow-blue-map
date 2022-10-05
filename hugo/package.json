@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "hyperlist": "^1.0.0",
-    "leaflet": "^1.9.1"
+    "leaflet": "^1.9.1",
+    "leaflet.locatecontrol": "^0.76.1"
   }
 }
