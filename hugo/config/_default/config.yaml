@@ -40,3 +40,14 @@ outputFormats:
     mediaType: text/html
     path: no-js
     baseName: index
+module:
+  mounts:
+  - source: static
+    target: static
+  - source: assets
+    target: assets
+  - source: node_modules/leaflet/dist
+    target: assets/new_leaflet
+    includeFiles: /leaflet.css
+  - source: node_modules/leaflet/dist/images
+    target: static/new_leaflet/images

@@ -1,7 +1,7 @@
-{{- $leafletCss := resources.Get "leaflet/leaflet.css" }}
-{{- $leafletGpsCss := resources.Get "leaflet/leaflet-gps.src.css" }}
-{{- $leafletBundleCss := slice $leafletCss $leafletGpsCss | resources.Concat "leaflet/leaflet-bundle.css" | minify }}
-<link rel="stylesheet" href="{{ $leafletBundleCss.RelPermalink }}" />
+{{- $leafletCss := resources.Get "new_leaflet/leaflet.css" | minify }}
+<link rel="stylesheet" href="{{ $leafletCss.RelPermalink }}" />
+{{- $leafletGpsCss := resources.Get "leaflet/leaflet-gps.src.css" | minify }}
+<link rel="stylesheet" href="{{ $leafletGpsCss.RelPermalink }}" />
 {{- $leafletJs := resources.Get "leaflet/leaflet.src.js" }}
 {{- $leafletZoomFsJs := resources.Get "leaflet/leaflet.zoomfs.js" }}
 {{- $leafletGpsJs := resources.Get "leaflet/leaflet-gps.src.js" }}
