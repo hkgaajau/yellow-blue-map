@@ -57,3 +57,9 @@ module:
   - source: node_modules/leaflet.locatecontrol
     target: static/leaflet.locatecontrol
     includeFiles: /*.svg
+  - source: node_modules/leaflet.fullscreen
+    target: assets/leaflet.fullscreen
+    includeFiles: /Control.FullScreen.css
+  - source: node_modules/leaflet.fullscreen
+    target: static/leaflet.fullscreen
+    includeFiles: /icon-fullscreen.svg

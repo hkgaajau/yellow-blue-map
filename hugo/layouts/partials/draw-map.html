@@ -2,5 +2,7 @@
 <link rel="stylesheet" href="{{ $leafletCss.RelPermalink }}" />
 {{- $leafletLocateControlCss := resources.Get "leaflet.locatecontrol/css/L.Control.Locate.css" | minify }}
 <link rel="stylesheet" href="{{ $leafletLocateControlCss.RelPermalink }}" />
+{{- $leafletFullscreenCss := resources.Get "leaflet.fullscreen/Control.FullScreen.css" | minify }}
+<link rel="stylesheet" href="{{ $leafletFullscreenCss.RelPermalink }}" />
 {{- $drawMapJs := resources.Get "js/draw-map.js" | js.Build | minify }}
 <script src="{{ $drawMapJs.RelPermalink }}"></script>

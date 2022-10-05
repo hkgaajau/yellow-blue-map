@@ -1,5 +1,6 @@
 import L from 'leaflet'
 import 'leaflet.locatecontrol'
+import 'leaflet.fullscreen'
 
 var mapElement = document.getElementById('map')
 mapElement.classList.add('js')
@@ -64,12 +65,12 @@ xhr.onload = function () {
     center: [latAvg, lngAvg],
     zoom: 16,
     layers: [tileLayer, yellowGroup, blueGroup, greenGroup],
-    zoomControl: false
+    zoomControl: true
   })
 
   L.control.locate().addTo(map)
 
-  // map.addControl(new L.Control.ZoomFS())
+  L.control.fullscreen().addTo(map)
 
   var overlayMaps = {
     '黃店': yellowGroup,

@@ -98,7 +98,7 @@ footer > :last-child {
     min-height: 300px;
     max-height: 500px;
 }
-#map.js.leaflet-fullscreen {
+#map.leaflet-pseudo-fullscreen {
     min-height: 0;
     max-height: none;
 }

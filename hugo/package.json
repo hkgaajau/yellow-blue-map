@@ -2,6 +2,8 @@
   "dependencies": {
     "hyperlist": "^1.0.0",
     "leaflet": "^1.9.1",
-    "leaflet.locatecontrol": "^0.76.1"
+    "leaflet.fullscreen": "^2.4.0",
+    "leaflet.locatecontrol": "^0.76.1",
+    "screenfull": "^5.2.0"
   }
 }
