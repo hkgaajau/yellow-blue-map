@@ -7,5 +7,5 @@
 {{- $leafletGpsJs := resources.Get "leaflet/leaflet-gps.src.js" }}
 {{- $leafletBundleJs := slice $leafletJs $leafletZoomFsJs $leafletGpsJs | resources.Concat "leaflet/leaflet-bundle.js" | minify }}
 <script src="{{ $leafletBundleJs.RelPermalink }}"></script>
-{{- $drawMapJs := resources.Get "js/draw-map.js" | minify }}
+{{- $drawMapJs := resources.Get "js/draw-map.js" | js.Build | minify }}
 <script src="{{ $drawMapJs.RelPermalink }}"></script>

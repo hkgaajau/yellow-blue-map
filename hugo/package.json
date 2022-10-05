@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "hyperlist": "^1.0.0"
+    "hyperlist": "^1.0.0",
+    "leaflet": "^1.9.1"
   }
 }

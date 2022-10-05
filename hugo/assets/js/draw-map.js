@@ -1,3 +1,5 @@
+import L from 'leaflet'
+
 var mapElement = document.getElementById('map')
 mapElement.classList.add('js')
 
@@ -61,8 +63,7 @@ xhr.onload = function () {
     center: [latAvg, lngAvg],
     zoom: 16,
     layers: [tileLayer, yellowGroup, blueGroup, greenGroup],
-    zoomControl: false,
-    tap: false
+    zoomControl: false
   })
 
   map.addControl(new L.Control.Gps({ autoCenter: true }))
