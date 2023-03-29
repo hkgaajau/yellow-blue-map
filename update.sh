@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# allow running under later dotnet version
+export DOTNET_ROLL_FORWARD=Major
+
 # update from gmap
 cd gmap_importer
 curl -o google_export.kmz 'https://www.google.com/maps/d/kml?mid=11zThwHjrFwBlNCStMQavBdryuESKzcdR'
