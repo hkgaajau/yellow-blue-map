@@ -1,3 +1,7 @@
+{{ define "customDescription" }}
+<meta name="description" content="今個星期黃藍綠店有咩更新？">
+{{- end }}
+
 {{ define "title" }}{{ .Date.Format "2006-01-02" }} {{ (site.GetPage .Section).Title }} | {{ .Site.Title }}{{ end }}
 
 {{ define "main" }}

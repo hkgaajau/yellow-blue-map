@@ -1,5 +1,9 @@
 {{ define "title" }}{{ .Title }} ({{ .Params.colours }}) | {{ .Site.Title }}{{ end }}
 
+{{ define "customDescription"}}
+<meta name="description" content="位於{{ partial "format-meta-desc-district.html" .Params.districts }}嘅{{ .Params.categories }}{{ index .Site.Data.lists.colour_emoji_mappings .Params.colours }}店">
+{{- end }}
+
 {{ define "main" }}
 
 <article>

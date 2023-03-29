@@ -1,0 +1,7 @@
+{{ $districtDisplay := "" }}
+{{ if eq . "網上商店" }}
+{{ $districtDisplay = "網上" }}
+{{ else }}
+{{ $districtDisplay = print . (cond (hasSuffix . "區") "" "區") }}
+{{ end }}
+{{ return $districtDisplay }}
