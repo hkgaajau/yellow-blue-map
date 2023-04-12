@@ -1,3 +1,8 @@
+{{ define "customDescription"}}
+{{- $Pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
+<meta name="description" content="你每次嘅消費，都係為緊你想要嘅世界投票。截至{{ now.Format "2006年1月2日" }}為止，終極黃藍地圖一共收錄咗：黃店 {{ len (index .Site.Taxonomies.colours "黃店") }}間，綠店 {{ len (index .Site.Taxonomies.colours "綠店") }}間，藍店 {{ len (index .Site.Taxonomies.colours "藍店") }}間，總數 {{ len $Pages }}間。">
+{{- end }}
+
 {{ define "main" }}
 
 {{ $Pages := .Pages }}
@@ -12,7 +17,8 @@
   <p>綠店: {{ len (index .Site.Taxonomies.colours "綠店") }}間</p>
   <p>藍店: {{ len (index .Site.Taxonomies.colours "藍店") }}間</p>
   <p>總數: {{ len $Pages }}間</p>
-  <p>網站最後產生日期: {{ now.Format "2006-01-02" }}</p>
+  <p>想報料？去<a href="https://www.facebook.com/yellowbluemap/">終極黃藍地圖FB</a>填表啦！</p>
+  <p>網站最後產生日期: <time datetime="{{ now.Format "2006-01-02" }}">{{ now.Format "2006年1月2日" }}</time></p>
   {{ .Content }}
 </article>
 
