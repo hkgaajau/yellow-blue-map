@@ -1,5 +1,15 @@
 # Yellow Blue Map (黃藍地圖)
 
+## Important Notice (2023-07-09)
+
+Data file update has been suspended due to source map data being taken down by its owner. This project will remain here as an archive. Ideas on the future of this project are welcome in the issues section. Make sure you have taken steps to protect your identity (e.g. create a new GitHub account that isn't linked to your personal identity in real life) before posting here.
+
+由於終極黃藍地圖團隊已經移除Google Maps的終極黃藍地圖，這邊亦會暫停更新，但這裏的一切會留下，為歷史做個見證。
+
+有咩意見可以喺Issues提出，強烈建議開個新GitHub account先好出post，唔好洩露自己個人身份。記住好好保護自己！
+
+感謝黃藍地圖Admin呢幾年嘅付出，希望大家平安。香港人，加油！
+
 ## Summary
 
 This repo hopes to provide a collaboration platform for anyone who wants to contribute updates on yellow/blue shops in Hong Kong.
@@ -12,7 +22,7 @@ This project has 2 parts:
 
 1. Static site generator (using Hugo) for generating the shop lists by shop category, district and colour and any other useful materials
 
-The data files are updated manually and weekly from Google maps. Changes in this repo are published to the [mirror site](https://yellow-blue-map.pages.dev) automatically.
+This repo has been published to the [mirror site](https://yellow-blue-map.pages.dev).
 
 ## Mirror site not working?
 
@@ -31,19 +41,9 @@ To test out the update process (you will need [.NET 6 SDK](https://dotnet.micros
 
 Feel free to look around the code and make suggestions/pull requests. All contributions are welcome!
 
-## To-do
-
-1. JSON generation for use by other existing apps
-1. Add machine-readable metadata (e.g. RDFa) for easier consumption
-1. Transition from Google My Maps to this repo for collaboration
-   - Add admins from original project
-   - Stop importing from Google
-   - Prepare template for new shop addition
-   - Process pull requests here
-
 ## Credits
 
-- [終極黃藍地圖] for map source data
+- [終極黃藍地圖] for map source data (link not working anymore)
 - [HAD at data.gov.hk](https://data.gov.hk/en-data/dataset/hk-had-json1-hong-kong-administrative-boundaries) for districts boundary data
 
-[終極黃藍地圖]: http://bit.do/yellowbluemap
+[終極黃藍地圖]: https://bit.ly/yellowbluemap
