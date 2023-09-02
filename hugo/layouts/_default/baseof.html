@@ -32,8 +32,10 @@
 
 <footer class="{{ if .Site.Params.brightheader }}bright{{ else }}dark{{ end }}">
     <span><a href="https://github.com/hkgaajau/yellow-blue-map"><img alt="Github Repo" src="{{ "img/GitHub-Mark-Light-32px.png" | relURL }}"></a></span>
-    <span>資料來源: <a href="https://bit.ly/yellowbluemap">終極黃藍地圖</a></span>
-</footer>
+    {{- if (and (eq .Type "shops") (eq .Kind "page")) }}
+    <span>資料來源: {{ with .Params.source }}{{ with (index $.Site.Data.sources .) }}<a href="{{ .url }}">{{ .name }}</a>{{ end }}{{ else }}終極黃藍地圖{{ end }}</span>
+    {{- end }}
+</footer> 
 
 {{- block "js" . }}{{- end }}
 

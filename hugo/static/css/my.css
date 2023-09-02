@@ -26,8 +26,8 @@ footer img {
     vertical-align: middle;
 }
 
-footer > :last-child {
-    margin-left: auto;
+footer > :first-child {
+    margin-right: auto;
 }
 
 .box-list {
@@ -156,4 +156,11 @@ body.noscroll {
 
 #search-container input {
     flex: 1;
+}
+
+.source-disclaimer {
+    background: lightyellow;
+    border: 1px red solid;
+    color: black;
+    padding: 0.5em;
 }

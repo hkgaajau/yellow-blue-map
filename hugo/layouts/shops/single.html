@@ -14,6 +14,11 @@
     </div>
     <h1 class="{{ partial "get-colour-class.html" .Params.colours }}">{{ .Title }} ({{ .Params.colours }})</h1>
     <p><a href="https://www.openstreetmap.org/?&mlat={{ .Params.lat }}&mlon={{ .Params.lng }}#map=17/{{ .Params.lat }}/{{ .Params.lng }}">地圖</a></p>
+    {{- with .Params.source }}
+    {{- with (index $.Site.Data.sources .) }}
+    <p class="source-disclaimer">此店於終極黃藍地圖下架後才被收錄，請自行判斷資料來源（{{ index . "name" }}）是否可靠。</p>
+    {{- end }}
+    {{- end }}
   </header>
   {{ .Content }}
 </article>
