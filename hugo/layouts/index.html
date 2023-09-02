@@ -17,7 +17,7 @@
   <p>綠店: {{ len (index .Site.Taxonomies.colours "綠店") }}間</p>
   <p>藍店: {{ len (index .Site.Taxonomies.colours "藍店") }}間</p>
   <p>總數: {{ len $Pages }}間</p>
-  <p>想報料？去<a href="https://www.facebook.com/yellowbluemap/">終極黃藍地圖FB</a>填表啦！</p>
+  <p>想報料？去<a href="https://github.com/hkgaajau/yellow-blue-map/issues">開個Issue</a>啦！</p>
   <p>網站最後產生日期: <time datetime="{{ now.Format "2006-01-02" }}">{{ now.Format "2006年1月2日" }}</time></p>
   {{ .Content }}
 </article>
