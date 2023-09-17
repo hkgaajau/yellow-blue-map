@@ -1,5 +1,5 @@
 {{- $colour := .colour}}
-{{- $groupedCategoryPages := .pages.GroupByParam "districts" }}
+{{- $groupedCategoryPages := .pages.ByTitle.GroupByParam "districts" }}
 
 <ul class="box-list">
 {{- range $groupedCategoryPages}}

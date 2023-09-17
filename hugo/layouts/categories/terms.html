@@ -1,6 +1,6 @@
 {{ define "main" }}
 
-{{ $Pages := .Pages }}
+{{ $Pages := .Pages.ByTitle }}
 
 <article>
   <header><h1>{{ .Title | default "Posts" | humanize }}</h1></header>
