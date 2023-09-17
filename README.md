@@ -1,5 +1,11 @@
 # Yellow Blue Map (黃藍地圖)
 
+## Update (2023-09-17)
+
+Data update will be resumed slowly. Data source for new shops will be displayed for readers' judgement. Feel free to make contributions via Issues.
+
+同路人仍在努力，這邊也會繼續更新。所有新加入的店舖都會顯示資料來源供讀者自行判斷。歡迎到Issues報料。人手有限，更新需時，請見諒。
+
 ## Important Notice (2023-07-09)
 
 Data file update has been suspended due to source map data being taken down by its owner. This project will remain here as an archive. Ideas on the future of this project are welcome in the issues section. Make sure you have taken steps to protect your identity (e.g. create a new GitHub account that isn't linked to your personal identity in real life) before posting here.
