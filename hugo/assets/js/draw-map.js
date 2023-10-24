@@ -38,9 +38,8 @@ xhr.onload = function () {
   var generateMarkerIcon = function (backgroundColourClass) {
     return L.divIcon({
       className: '',
-      iconAnchor: [0, 24],
-      labelAnchor: [-6, 0],
-      popupAnchor: [0, -36],
+      iconAnchor: [0, 12],
+      popupAnchor: [0, -24],
       html: '<span class="marker ' + backgroundColourClass + '"></span>'
     })
   }
