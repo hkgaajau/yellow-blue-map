@@ -32,6 +32,8 @@ outputs:
   - HTML
   - JSON
   - NoJsHtml
+  - Helper
+  - HelperJson
   term:
   - HTML
   - JSON
@@ -39,6 +41,14 @@ outputFormats:
   NoJsHtml:
     mediaType: text/html
     path: no-js
+    baseName: index
+  Helper:
+    mediaType: text/html
+    path: helper
+    baseName: index
+  HelperJson:
+    mediaType: application/json
+    path: helper
     baseName: index
 module:
   mounts:

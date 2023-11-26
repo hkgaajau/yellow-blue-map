@@ -1,0 +1,5 @@
+{{- $list := slice -}}
+{{- range $index, $element := .Data.Pages.ByTitle -}}
+    {{- $list = $list | append (dict "id" $index "name" $element.Name "colour" $element.Params.colours "district" $element.Params.districts "category" $element.Params.categories "lat" $element.Params.lat "lng" $element.Params.lng "link" $element.RelPermalink) -}}
+{{- end -}}
+{{- $list | jsonify -}}

@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "@turf/boolean-point-in-polygon": "^6.5.0",
+    "@turf/helpers": "^6.5.0",
     "hyperlist": "^1.0.0",
     "leaflet": "^1.9.4",
     "leaflet.fullscreen": "^3.0.0",

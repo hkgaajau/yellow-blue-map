@@ -1,0 +1,59 @@
+{{ define "main" }}
+
+{{ $Pages := .Pages.ByTitle }}
+
+<article>
+  <p><button id="reset-forms-button">Reset forms</button></p>
+  <form target="_blank" name="google-maps-search-form" action="https://www.google.com/maps/search/">
+    <input type="hidden" name="api" value="1">
+    <p><label>Address: <input type="text" name="query" size="40" required><button type="submit">Search Google Maps</button></label></p>
+  </form>
+  <form name="go-to-coordinates-form">
+    <p><label>Go to coordinates (lat, lng): <input type="text" name="coordinates" size="40" required pattern="-?\d+\.\d+, -?\d+\.\d+" title="Format should be &quot;lat, lng&quot;"><button type="submit">Go!</button></label></p>
+  </form>
+  {{ partial "map-placeholder.html" }}
+  <form name="new-shop-form">
+    <p>Click on map for coordinates (lat, lng): <input type="text" name="coordinates" size="40" required pattern="-?\d+\.\d+, -?\d+\.\d+" title="Format should be &quot;lat, lng&quot;"></p>
+    <p>District: <input type="text" name="district" size="10" required></p>
+    <p><label>Title: <input type="text" name="title" size="20" required></label></p>
+    <p><label>Address: <input type="text" name="address" size="40"></label></p>
+    <p><label>Date: <input type="date" name="date"></label></p>
+    <p>Colour: <label>黃店<input type="radio" name="colour" value="黃店" checked></label> <label>藍店<input type="radio"
+          name="colour" value="藍店"></label> <label>綠店<input type="radio" name="colour" value="綠店"></label></p>
+    <p><label>Category: <input type="text" name="category" size="10" list="categoryList" value="食肆"></label></p>
+    <datalist id="categoryList">
+      {{- range $key, $value := .Site.Taxonomies.categories }}
+      <option>{{ $key }}</option>
+      {{- end }}
+    </datalist>
+    <p><label>Phone (8 digits):<input type="tel" name="phone" size="8" maxlength="8" pattern="\d+"></label></p>
+    <p><label>WhatsApp (8 digits): <input type="tel" name="whatsapp" size="8" maxlength="8" pattern="\d+"></label></p>
+    <p><label>Opening hours (copy from Openrice): <textarea name="openingHours" rows="7" cols="30" placeholder="星期一至六
+09:00 - 17:00
+星期日
+全日休息
+公眾假期
+全日休息"></textarea></label></p>
+    <p><label>URL: <input type="url" name="url" size="40"></label></p>
+    <p><label>FB: <input type="url" name="fb" size="40"></label></p>
+    <p><label>IG: <input type="url" name="ig" size="40"></label></p>
+    <p><label>Openrice: <input type="url" name="openrice" size="40"></label></p>
+    <p><label>Remarks: <textarea name="remarks" rows="5" cols="40"></textarea></label></p>
+    <p>Source:
+      <select name="source">
+        {{- range $key, $value := .Site.Data.sources }}
+        <option value="{{ $key }}" {{- if eq $key "onlyeatgood" }} selected{{- end }}>{{ $value.name }}</option>
+        {{- end }}
+      </select>
+    </p>
+    <p><label>Source URL: <input type="url" name="sourceUrl" size="40" required></label></p>
+    <p><button type="submit">Generate content file</button></p>
+  </form>
+</article>
+
+{{ end }}
+{{ define "js" }}
+{{- $shopsMapHelperJs := resources.Get "js/shops-map-helper.js" | js.Build (dict "minify" true) }}
+<script src="{{ $shopsMapHelperJs.RelPermalink }}"></script>
+{{ partial "draw-map.html" }}
+{{ end }}

@@ -77,6 +77,8 @@ xhr.onload = function () {
     '綠店': greenGroup
   }
   L.control.layers(null, overlayMaps).addTo(map)
+
+  mapElement.dispatchEvent(new CustomEvent('mapCreated', { detail: { map } }))
 }
 xhr.open('GET', 'index.json')
 xhr.send()
