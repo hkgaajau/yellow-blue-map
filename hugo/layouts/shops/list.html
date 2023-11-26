@@ -20,6 +20,6 @@
 
 {{ end }}
 {{ define "js" }}
-{{ $built := resources.Get "js/render-full-list.js" | js.Build (dict "targetPath" "js/render-full-list.js" "params" site.Data.lists) | minify }}
+{{ $built := resources.Get "js/render-full-list.js" | js.Build (dict "targetPath" "js/render-full-list.js" "params" site.Data.lists "minify" true) }}
 <script src="{{ $built.RelPermalink }}" defer></script>
 {{ end }}

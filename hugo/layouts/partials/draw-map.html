@@ -4,5 +4,5 @@
 <link rel="stylesheet" href="{{ $leafletLocateControlCss.RelPermalink }}" />
 {{- $leafletFullscreenCss := resources.Get "leaflet.fullscreen/Control.FullScreen.css" | minify }}
 <link rel="stylesheet" href="{{ $leafletFullscreenCss.RelPermalink }}" />
-{{- $drawMapJs := resources.Get "js/draw-map.js" | js.Build | minify }}
+{{- $drawMapJs := resources.Get "js/draw-map.js" | js.Build (dict "minify" true) }}
 <script src="{{ $drawMapJs.RelPermalink }}"></script>
