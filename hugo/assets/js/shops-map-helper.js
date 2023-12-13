@@ -93,7 +93,7 @@ lat: ${coord7Array[0]}
 lng: ${coord7Array[1]}
 source: ${source}
 ---
-【商戶資料 / Shop Information】 <br>店名: ${title}<br>地址: ${address}<br>電話: ${convertToPhoneLink(phone)}<br>WhatsApp: ${convertToWhatsappLink(whatsapp)}<br>營業時間: <br>${formatOpenriceOpeningHours(openingHours)}<br>網址: ${convertToHyperlink(url)}<br>Facebook: ${convertToHyperlink(fb)}<br>Instagram: ${convertToHyperlink(ig)}<br>Openrice: ${convertToHyperlink(openrice)}${ remarks && '<br><br>' + remarks.replace(/\n/g, '<br>') }<br><br>相關連結: ${convertToHyperlink(sourceUrl)}\n`
+【商戶資料 / Shop Information】 <br>店名: ${title}<br>地址: ${convertFalsyToSlash(address)}<br>電話: ${convertToPhoneLink(phone)}<br>WhatsApp: ${convertToWhatsappLink(whatsapp)}<br>營業時間: <br>${formatOpenriceOpeningHours(openingHours)}<br>網址: ${convertToHyperlink(url)}<br>Facebook: ${convertToHyperlink(fb)}<br>Instagram: ${convertToHyperlink(ig)}<br>Openrice: ${convertToHyperlink(openrice)}${ remarks && '<br><br>' + remarks.replace(/\n/g, '<br>') }<br><br>相關連結: ${convertToHyperlink(sourceUrl)}\n`
   const blob = new Blob([outputContent], { type: 'text/html;charset=UTF-8' })
 
   const link = document.createElement('a')
@@ -136,6 +136,10 @@ function convertToWhatsappLink(whatsapp) {
 
 function convertToHyperlink(url) {
   return url ? `<a href="${url}">${url}</a>` : '/'
+}
+
+function convertFalsyToSlash(text) {
+  return text || '/'
 }
 
 function formatOpenriceOpeningHours(openingHours) {
