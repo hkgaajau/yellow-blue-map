@@ -63,7 +63,8 @@ newShopForm.addEventListener('submit', function (submitEvent) {
 
   submitEvent.preventDefault()
 
-  const title = escapeHtml(newShopForm['title'].value.trim())
+  const unescapedTitle = newShopForm['title'].value.trim()
+  const title = escapeHtml(unescapedTitle)
   const date = escapeHtml(newShopForm['date'].value.trim())
   const district = escapeHtml(newShopForm['district'].value.trim())
   const colour = escapeHtml(newShopForm['colour'].value.trim())
@@ -83,7 +84,7 @@ newShopForm.addEventListener('submit', function (submitEvent) {
   const coord7Array = get7DigitLatLngAsArray(coord)
 
   const outputContent = `---
-title: '${title}'
+title: '${unescapedTitle}'
 date: ${date}
 districts: ${district}
 colours: ${colour}
@@ -97,7 +98,7 @@ source: ${source}
 
   const link = document.createElement('a')
   link.href = window.URL.createObjectURL(blob)
-  link.download = getCoordPrefix(coord) + getSafeFilename(title) + '.html'
+  link.download = getCoordPrefix(coord) + getSafeFilename(unescapedTitle) + '.html'
   link.click()
 }, false)
 
