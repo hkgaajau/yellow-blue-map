@@ -1,5 +1,23 @@
+{{- $searchTitleMapping := dict -}}
+{{- $path := "data/shop_search_titles.json" -}}
+{{- with resources.Get $path -}}
+    {{- with . | transform.Unmarshal -}}
+        {{- $searchTitleMapping = . -}}
+    {{- end -}}
+{{- else -}}
+    {{- warnf "Unable to get global resource %q; fallback to just using lowercase" $path -}}
+{{- end -}}
 {{- $list := slice -}}
 {{- range $index, $element := .Data.Pages.ByTitle -}}
-    {{- $list = $list | append (dict "id" $index "name" $element.Name "colour" $element.Params.colours "district" $element.Params.districts "category" $element.Params.categories "link" $element.RelPermalink) -}}
+    {{- $mappingValue := index $searchTitleMapping $element.Title -}}
+    {{- /* if normalized value does not exist, just use lowercase */ -}}
+    {{- $normalizedTitle := cond $mappingValue $mappingValue (lower $element.Title) -}}
+    {{- /* name is for display and search (normalized title) is for filtering */ -}}
+    {{- $entry := dict "id" $index "name" $element.Title "colour" $element.Params.colours "district" $element.Params.districts "category" $element.Params.categories "link" $element.RelPermalink -}}
+    {{- /* search is only added if the titles are different */ -}}
+    {{- if ne $element.Title $normalizedTitle -}}
+    {{- $entry = merge $entry (dict "search" $normalizedTitle) -}}
+    {{- end -}}
+    {{- $list = $list | append $entry -}}
 {{- end -}}
 {{- $list | jsonify -}}

@@ -67,7 +67,8 @@ function refreshHyperList(isResize) {
   }
 
   const searchTerm = document.getElementById('search-shop-textbox').value
-  const filteredShopList = searchTerm ? shopList.filter(s => s.name.toLowerCase().includes(searchTerm.toLowerCase())) : shopList
+  // use search field for searching if available, otherwise fallback to name
+  const filteredShopList = searchTerm ? shopList.filter(s => (s.search || s.name).includes(searchTerm.toLowerCase())) : shopList
 
   if (hyperList) {
     hyperList.refresh(container, generateListOption(filteredShopList))
