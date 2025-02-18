@@ -67,8 +67,12 @@ function refreshHyperList(isResize) {
   }
 
   const searchTerm = document.getElementById('search-shop-textbox').value
+
+  // perform same normalization as search field for matching
+  const normalizedSearchTerm = searchTerm.normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+
   // use search field for searching if available, otherwise fallback to name
-  const filteredShopList = searchTerm ? shopList.filter(s => (s.search || s.name).includes(searchTerm.toLowerCase())) : shopList
+  const filteredShopList = searchTerm ? shopList.filter(s => (s.search || s.name).includes(normalizedSearchTerm)) : shopList
 
   if (hyperList) {
     hyperList.refresh(container, generateListOption(filteredShopList))

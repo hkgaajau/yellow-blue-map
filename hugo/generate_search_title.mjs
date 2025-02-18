@@ -18,7 +18,7 @@ for await (const dirent of dir) {
       if ((match = /^title: '(.+)'/.exec(line)) != null) {
         const originalTitle = match[1].replaceAll("''", "'")
         // convert title to NFKD form and remove combining diacritical marks
-        const newTitle = originalTitle.normalize('NFKD').replace(/[\u0300-\u036f]/g, "");
+        const newTitle = originalTitle.normalize('NFKD').replace(/[\u0300-\u036f]/g, '');
 
         // add mapping only if titles are different to save space; hugo can handle simple lowercase conversion
         if (newTitle !== originalTitle) {
