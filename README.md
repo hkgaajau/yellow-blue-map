@@ -24,7 +24,7 @@ This repo hopes to provide a collaboration platform for anyone who wants to cont
 
 This project has 2 parts:
 
-1. Data importer (in .NET Core) for Google maps .kml to generate data files for the next step
+1. (Obsolete as the Google maps source has been taken down) Data importer (in .NET Core) for Google maps .kml to generate data files for the next step
 
 1. Static site generator (using Hugo) for generating the shop lists by shop category, district and colour and any other useful materials
 
@@ -38,12 +38,24 @@ The latest link to the mirror site will be updated on this page as soon as it is
 
 ## Getting Started
 
-To test out the update process (you will need [.NET 6 SDK](https://dotnet.microsoft.com/download) and [Hugo](https://gohugo.io/getting-started/installing/)) (v0.101.0 or newer preferred):
+### Prerequisites
 
-1. Run `update.sh`
-1. Data files are generated in hugo/content/shops/
-1. Go to hugo/ and run `hugo server`
+- [.NET 6 SDK or later](https://dotnet.microsoft.com/download)
+- [Hugo v0.145 (Hugo v0.146+ not supported!)](https://gohugo.io/installation/)
+
+### Development
+
+To build the site in-memory for development:
+
+1. Go to hugo/
+1. Run `npm i && node generate_search_title.mjs && hugo server -M`
 1. The files are served at http://localhost:1313
+1. Helper for generating new pages is at http://localhost:1313/shops/helper
+1. Generated pages saved to /hugo/content/shops/ will be reloaded automatically
+
+After changes are made and committed, you may run `generate-changelog.sh` to generate and commit the changelog.
+
+To generate the static files for hosting, use `npm i && node generate_search_title.mjs && hugo build -b <hostname-to-the-root>`.
 
 Feel free to look around the code and make suggestions/pull requests. All contributions are welcome!
 
