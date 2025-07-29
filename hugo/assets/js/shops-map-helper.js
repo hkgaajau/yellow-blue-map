@@ -65,6 +65,7 @@ newShopForm.addEventListener('submit', function (submitEvent) {
 
   const unescapedTitle = newShopForm['title'].value.trim()
   const title = escapeHtml(unescapedTitle)
+  const frontMatterTitle = unescapedTitle.replace(/'/g, "''") // escape ' for front matter
   const date = escapeHtml(newShopForm['date'].value.trim())
   const district = escapeHtml(newShopForm['district'].value.trim())
   const colour = escapeHtml(newShopForm['colour'].value.trim())
@@ -84,7 +85,7 @@ newShopForm.addEventListener('submit', function (submitEvent) {
   const coord7Array = get7DigitLatLngAsArray(coord)
 
   const outputContent = `---
-title: '${unescapedTitle}'
+title: '${frontMatterTitle}'
 date: ${date}
 districts: ${district}
 colours: ${colour}
