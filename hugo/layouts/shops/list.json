@@ -11,7 +11,7 @@
 {{- range $index, $element := .Data.Pages.ByTitle -}}
     {{- $mappingValue := index $searchTitleMapping $element.Title -}}
     {{- /* if normalized value does not exist, just use lowercase */ -}}
-    {{- $normalizedTitle := cond $mappingValue $mappingValue (lower $element.Title) -}}
+    {{- $normalizedTitle := or $mappingValue (lower $element.Title) -}}
     {{- /* name is for display and search (normalized title) is for filtering */ -}}
     {{- $entry := dict "id" $index "name" $element.Title "colour" $element.Params.colours "district" $element.Params.districts "category" $element.Params.categories "link" $element.RelPermalink -}}
     {{- /* search is only added if the titles are different */ -}}
