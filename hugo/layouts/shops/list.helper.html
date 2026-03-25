@@ -41,7 +41,7 @@
     <p><label>Remarks: <textarea name="remarks" rows="5" cols="40"></textarea></label></p>
     <p>Source:
       <select name="source">
-        {{- range $key, $value := .Site.Data.sources }}
+        {{- range $key, $value := hugo.Data.sources }}
         <option value="{{ $key }}" {{- if eq $key "onlyeatgood" }} selected{{- end }}>{{ $value.name }}</option>
         {{- end }}
       </select>
