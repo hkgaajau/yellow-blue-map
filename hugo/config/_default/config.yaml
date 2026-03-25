@@ -55,15 +55,19 @@ module:
     target: assets
   - source: node_modules/leaflet/dist
     target: assets/leaflet
-    includeFiles: /leaflet.css
+    files:
+    - /leaflet.css
   - source: node_modules/leaflet/dist/images
     target: static/leaflet/images
   - source: node_modules/leaflet.locatecontrol/dist
     target: assets/leaflet.locatecontrol/css
-    includeFiles: /L.Control.Locate.css
+    files:
+    - /L.Control.Locate.css
   - source: node_modules/leaflet.fullscreen
     target: assets/leaflet.fullscreen
-    includeFiles: /Control.FullScreen.css
+    files:
+    - /Control.FullScreen.css
   - source: node_modules/leaflet.fullscreen
     target: static/leaflet.fullscreen
-    includeFiles: /icon-fullscreen.svg
+    files:
+    - /icon-fullscreen.svg
