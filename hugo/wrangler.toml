@@ -1,0 +1,20 @@
+name = "yellow-blue-map"
+pages_build_output_dir = "public"
+compatibility_date = "2026-03-29"
+
+[vars]
+GIT_CONFIG_COUNT = "1"
+GIT_CONFIG_KEY_0 = "core.quotepath"
+GIT_CONFIG_VALUE_0 = "false"
+HUGO_VERSION = "0.159.1"
+NODE_VERSION = "24.14.1"
+NPM_VERSION = "11.11.0"
+
+[env.production.vars]
+CF_PAGES_URL = "https://yellow-blue-map.pages.dev/"
+GIT_CONFIG_COUNT = "1"
+GIT_CONFIG_KEY_0 = "core.quotepath"
+GIT_CONFIG_VALUE_0 = "false"
+HUGO_VERSION = "0.159.1"
+NODE_VERSION = "24.14.1"
+NPM_VERSION = "11.11.0"
