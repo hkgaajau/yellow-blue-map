@@ -18,15 +18,18 @@ menu:
   - name: 搜尋店舖
     url: shops/
     weight: 1
-  - name: 改動
-    url: changelogs/
-    weight: 4
-  - name: 分類
-    url: categories/
-    weight: 3
   - name: 分區
     url: districts/
     weight: 2
+  - name: 分類
+    url: categories/
+    weight: 3
+  - name: 改動
+    url: changelogs/
+    weight: 4
+  - name: 撐住傳媒
+    url: support-media/
+    weight: 5
 outputs:
   section:
   - HTML

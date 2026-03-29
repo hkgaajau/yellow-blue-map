@@ -1,0 +1,28 @@
+{{ define "main" }}
+
+<article>
+  <header><h1>{{ .Title }}</h1></header>
+
+  {{ .Content }}
+
+{{ with .Resources.Get "data/local.json" | transform.Unmarshal }}
+<p>本地傳媒 (排名不分先後):</p>
+<ul>
+  {{ range . }}
+    <li><a href="{{ .url }}">{{ .name }}</a></li>
+  {{ end }}
+</ul>
+{{ end }}
+
+{{ with .Resources.Get "data/overseas.json" | transform.Unmarshal }}
+<p>海外傳媒 (排名不分先後):</p>
+<ul>
+  {{ range . }}
+    <li><a href="{{ .url }}">{{ .name }}</a></li>
+  {{ end }}
+</ul>
+{{ end }}
+
+</article>
+
+{{ end }}
