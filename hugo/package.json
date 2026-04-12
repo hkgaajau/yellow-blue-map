@@ -2,6 +2,8 @@
   "dependencies": {
     "@turf/boolean-point-in-polygon": "^6.5.0",
     "@turf/helpers": "^6.5.0",
+    "@zip.js/zip.js": "^2.8.26",
+    "csv-parse": "^6.2.1",
     "hyperlist": "^1.0.0",
     "leaflet": "^1.9.4",
     "leaflet.fullscreen": "^3.0.0",

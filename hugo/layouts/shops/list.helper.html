@@ -3,6 +3,7 @@
 {{ $Pages := .Pages.ByTitle }}
 
 <article>
+  <h1>Single form mode</h1>
   <p><button id="clear-branch-fields-button">Clear fields for other branches</button> <button id="reset-forms-button">Reset forms</button></p>
   <form target="_blank" name="google-maps-search-form" action="https://www.google.com/maps/search/">
     <input type="hidden" name="api" value="1">
@@ -14,7 +15,7 @@
   {{ partial "map-placeholder.html" }}
   <form name="new-shop-form">
     <p>Click on map for coordinates (lat, lng): <input type="text" name="coordinates" size="40" required pattern="-?\d+\.\d+, -?\d+\.\d+" title="Format should be &quot;lat, lng&quot;"></p>
-    <p>District: <input type="text" name="district" size="10" required></p>
+    <p>District: <input type="text" name="district" size="10" readonly></p>
     <p><label>Title: <input type="text" name="title" size="20" required></label></p>
     <p><label>Address: <input type="text" name="address" size="40"></label></p>
     <p><label>Date: <input type="date" name="date"></label></p>
@@ -42,13 +43,18 @@
     <p>Source:
       <select name="source">
         {{- range $key, $value := hugo.Data.sources }}
-        <option value="{{ $key }}" {{- if eq $key "onlyeatgood" }} selected{{- end }}>{{ $value.name }}</option>
+        <option value="{{ $key }}" {{- if eq $key "onlyeatgood" }} selected{{- end }}>{{ $value.name }} - {{ $key }}</option>
         {{- end }}
       </select>
     </p>
     <p><label>Source URL: <input type="url" name="sourceUrl" size="40" required></label></p>
     <p><button type="submit">Generate content file</button></p>
   </form>
+  <hr>
+  <h1>Batch csv mode</h1>
+  <p><a download="shops-template.csv" href="data:text/csv;charset=utf-8,address,coordinates,title,colour,category,phone,whatsapp,openingHours,url,fb,ig,openrice,remarks,source,sourceUrl%0d%0a">Download csv template for manual editing.</a></p>
+  <p>Choose csv file to import:</p>
+  <p><input type="file" id="csvImportFilepicker" accept=".csv,text/csv"></p>
 </article>
 
 {{ end }}

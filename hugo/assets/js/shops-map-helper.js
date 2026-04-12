@@ -1,5 +1,11 @@
 import { point, polygon } from '@turf/helpers'
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon'
+import { parse } from 'csv-parse/browser/esm/sync'
+import { configure, BlobWriter, TextReader, ZipWriter } from '@zip.js/zip.js'
+
+configure({
+  useWebWorkers: false,
+})
 
 import { features } from 'data/hksar_18_district_boundary.json'
 
@@ -157,6 +163,45 @@ document.getElementById('reset-forms-button').addEventListener('click', function
 
   initializeNewShopForm()
 }, false)
+
+document.getElementById('csvImportFilepicker').addEventListener('change', (event) => {
+  const file = event.target.files[0]
+  if (file) {
+    const reader = new FileReader()
+
+    reader.onload = async (e) => {
+      const content = e.target.result
+
+      csvRecords = parse(content, {
+        bom: true,
+        columns: true,
+      })
+
+      const zipFileWriter = new BlobWriter()
+      const zipWriter = new ZipWriter(zipFileWriter)
+
+      for (const record of csvRecords) {
+        const shop = generateShopContentObject({
+          date: new Date().toISOString().substring(0, 10),
+          ...record
+        })
+
+        await zipWriter.add(shop.filename, new TextReader(shop.content))
+      }
+
+      await zipWriter.close()
+      const zipFileBlob = await zipFileWriter.getData()
+
+      const link = document.createElement('a')
+      link.href = window.URL.createObjectURL(zipFileBlob)
+      link.download = 'shops.zip'
+      link.click()
+      window.URL.revokeObjectURL(link)
+    }
+
+    reader.readAsText(file)
+  }
+})
 
 function initializeNewShopForm() {
   newShopForm['date'].value = new Date().toISOString().substring(0, 10)
