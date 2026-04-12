@@ -46,15 +46,20 @@ document.getElementById('map').addEventListener('mapCreated', function (mapCreat
     const lng = leafletClickEvent.latlng.lng
 
     newShopForm['coordinates'].value = lat + ", " + lng
-
-    for (const district of districtsIncludingOnline) {
-      if (booleanPointInPolygon(point([lng, lat]), district)) {
-        newShopForm['district'].value = district['properties']['地區']
-        break
-      }
-    }
+    newShopForm['district'].value = getEnclosingDistrict(lat, lng)
   })
 }, false)
+
+function getEnclosingDistrict(lat, lng) {
+  for (const district of districtsIncludingOnline) {
+    if (booleanPointInPolygon(point([lng, lat]), district)) {
+      return district['properties']['地區']
+    }
+  }
+
+  console.warn(`The point (${lat}, ${lng}) does not belong to any district`)
+  return ''
+}
 
 newShopForm.addEventListener('submit', function (submitEvent) {
   if (!newShopForm.checkValidity()) {
@@ -63,45 +68,73 @@ newShopForm.addEventListener('submit', function (submitEvent) {
 
   submitEvent.preventDefault()
 
-  const unescapedTitle = newShopForm['title'].value.trim()
-  const title = escapeHtml(unescapedTitle)
-  const frontMatterTitle = unescapedTitle.replace(/'/g, "''") // escape ' for front matter
-  const date = escapeHtml(newShopForm['date'].value.trim())
-  const district = escapeHtml(newShopForm['district'].value.trim())
-  const colour = escapeHtml(newShopForm['colour'].value.trim())
-  const category = escapeHtml(newShopForm['category'].value.trim())
-  const address = escapeHtml(newShopForm['address'].value.trim())
-  const phone = escapeHtml(newShopForm['phone'].value.trim())
-  const whatsapp = escapeHtml(newShopForm['whatsapp'].value.trim())
-  const openingHours = escapeHtml(newShopForm['openingHours'].value.trim())
-  const url = escapeHtml(newShopForm['url'].value.trim())
-  const fb = escapeHtml(newShopForm['fb'].value.trim())
-  const ig = escapeHtml(newShopForm['ig'].value.trim())
-  const openrice = escapeHtml(newShopForm['openrice'].value.trim())
-  const remarks = escapeHtml(newShopForm['remarks'].value.trim())
-  const source = escapeHtml(newShopForm['source'].value.trim())
-  const sourceUrl = escapeHtml(newShopForm['sourceUrl'].value.trim())
-  const coord = escapeHtml(newShopForm['coordinates'].value.trim())
-  const coord7Array = get7DigitLatLngAsArray(coord)
+  const shopContent = generateShopContentObject({
+    address: newShopForm['address'].value,
+    category: newShopForm['category'].value,
+    colour: newShopForm['colour'].value,
+    coordinates: newShopForm['coordinates'].value,
+    date: newShopForm['date'].value,
+    fb: newShopForm['fb'].value,
+    ig: newShopForm['ig'].value,
+    openingHours: newShopForm['openingHours'].value,
+    openrice: newShopForm['openrice'].value,
+    phone: newShopForm['phone'].value,
+    remarks: newShopForm['remarks'].value,
+    source: newShopForm['source'].value,
+    sourceUrl: newShopForm['sourceUrl'].value,
+    title: newShopForm['title'].value,
+    url: newShopForm['url'].value,
+    whatsapp: newShopForm['whatsapp'].value,
+  })
 
-  const outputContent = `---
-title: '${frontMatterTitle}'
-date: ${date}
-districts: ${district}
-colours: ${colour}
-categories: ${category}
-lat: ${coord7Array[0]}
-lng: ${coord7Array[1]}
-source: ${source}
----
-【商戶資料 / Shop Information】 <br>店名: ${title}<br>地址: ${convertFalsyToSlash(address)}<br>電話: ${convertToPhoneLink(phone)}<br>WhatsApp: ${convertToWhatsappLink(whatsapp)}<br>營業時間: <br>${formatOpenriceOpeningHours(openingHours)}<br>網址: ${convertToHyperlink(url)}<br>Facebook: ${convertToHyperlink(fb)}<br>Instagram: ${convertToHyperlink(ig)}<br>Openrice: ${convertToHyperlink(openrice)}${ remarks && '<br><br>' + remarks.replace(/\n/g, '<br>') }<br><br>相關連結: ${convertToHyperlink(sourceUrl)}\n`
-  const blob = new Blob([outputContent], { type: 'text/html;charset=UTF-8' })
+  const blob = new Blob([shopContent.content], { type: 'text/html;charset=UTF-8' })
 
   const link = document.createElement('a')
   link.href = window.URL.createObjectURL(blob)
-  link.download = getCoordPrefix(coord) + getSafeFilename(unescapedTitle) + '.html'
+  link.download = shopContent.filename
   link.click()
+  window.URL.revokeObjectURL(link)
 }, false)
+
+function generateShopContentObject({title, date, colour, category, address, phone, whatsapp, openingHours, url, fb, ig, openrice, remarks, source, sourceUrl, coordinates}) {
+  const unescapedTitle = title.trim()
+  const escapedTitle = escapeHtml(unescapedTitle)
+  const frontMatterTitle = unescapedTitle.replace(/'/g, "''") // escape ' for front matter
+  const escapedDate = escapeHtml(date.trim())
+  const escapedColour = escapeHtml(colour.trim())
+  const escapedCategory = escapeHtml(category.trim())
+  const escapedAddress = escapeHtml(address.trim())
+  const escapedPhone = escapeHtml(phone.trim())
+  const escapedWhatsapp = escapeHtml(whatsapp.trim())
+  const escapedOpeningHours = escapeHtml(openingHours.trim())
+  const escapedUrl = escapeHtml(url.trim())
+  const escapedFb = escapeHtml(fb.trim())
+  const escapedIg = escapeHtml(ig.trim())
+  const escapedOpenrice = escapeHtml(openrice.trim())
+  const escapedRemarks = escapeHtml(remarks.trim())
+  const escapedSource = escapeHtml(source.trim())
+  const escapedSourceUrl = escapeHtml(sourceUrl.trim())
+  const escapedCoord = escapeHtml(coordinates.trim())
+  const coord7Array = get7DigitLatLngAsArray(escapedCoord)
+
+  const [lat, lng] = escapedCoord.split(', ')
+  const district = getEnclosingDistrict(lat, lng)
+
+  const filename = getCoordPrefix(escapedCoord) + getSafeFilename(unescapedTitle) + '.html'
+  const content = `---
+title: '${frontMatterTitle}'
+date: ${escapedDate}
+districts: ${district}
+colours: ${escapedColour}
+categories: ${escapedCategory}
+lat: ${coord7Array[0]}
+lng: ${coord7Array[1]}
+source: ${escapedSource}
+---
+【商戶資料 / Shop Information】 <br>店名: ${escapedTitle}<br>地址: ${convertFalsyToSlash(escapedAddress)}<br>電話: ${convertToPhoneLink(escapedPhone)}<br>WhatsApp: ${convertToWhatsappLink(escapedWhatsapp)}<br>營業時間: <br>${formatOpenriceOpeningHours(escapedOpeningHours)}<br>網址: ${convertToHyperlink(escapedUrl)}<br>Facebook: ${convertToHyperlink(escapedFb)}<br>Instagram: ${convertToHyperlink(escapedIg)}<br>Openrice: ${convertToHyperlink(escapedOpenrice)}${ escapedRemarks && '<br><br>' + escapedRemarks.replace(/\n/g, '<br>') }<br><br>相關連結: ${convertToHyperlink(escapedSourceUrl)}\n`
+
+  return {filename, content}
+}
 
 document.getElementById('clear-branch-fields-button').addEventListener('click', function () {
   document.forms['google-maps-search-form']['query'].value = ''
