@@ -103,6 +103,20 @@ source: ${source}
   link.click()
 }, false)
 
+document.getElementById('clear-branch-fields-button').addEventListener('click', function () {
+  document.forms['google-maps-search-form']['query'].value = ''
+  document.forms['go-to-coordinates-form']['coordinates'].value = ''
+  document.forms['new-shop-form']['coordinates'].value = ''
+  document.forms['new-shop-form']['district'].value = ''
+  document.forms['new-shop-form']['address'].value = ''
+  document.forms['new-shop-form']['phone'].value = ''
+  document.forms['new-shop-form']['whatsapp'].value = ''
+  document.forms['new-shop-form']['openingHours'].value = ''
+  document.forms['new-shop-form']['openrice'].value = ''
+
+  initializeNewShopForm()
+}, false)
+
 document.getElementById('reset-forms-button').addEventListener('click', function () {
   for (const form of document.forms) {
     form.reset()
