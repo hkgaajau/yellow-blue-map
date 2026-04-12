@@ -150,7 +150,7 @@ function formatOpenriceOpeningHours(openingHours) {
   let outputLineBuffer = ''
   let isFirstLine = true
   for (const line of lines) {
-    if (/^(星|公)/.test(line)) {
+    if (/^(星|公|\*)/.test(line)) {
       if (outputLineBuffer) outputLines.push(outputLineBuffer)
 
       outputLineBuffer = line
