@@ -40,8 +40,9 @@ The latest link to the mirror site will be updated on this page as soon as it is
 
 ### Prerequisites
 
-- [.NET 6 SDK or later](https://dotnet.microsoft.com/download)
-- [Hugo v0.145 (Hugo v0.146+ not supported!)](https://gohugo.io/installation/)
+- [.NET 10 SDK](https://dotnet.microsoft.com/download)
+- [Hugo v0.159.1](https://gohugo.io/installation/)
+- [Node.js v24](https://nodejs.org/en/download)
 
 ### Development
 
@@ -50,7 +51,7 @@ To build the site in-memory for development:
 1. Go to hugo/
 1. Run `npm i && node generate_search_title.mjs && hugo server -M`
 1. The files are served at http://localhost:1313
-1. Helper for generating new pages is at http://localhost:1313/shops/helper
+1. Helper for generating new pages is at http://localhost:1313/helper/shops
 1. Generated pages saved to /hugo/content/shops/ will be reloaded automatically
 
 After changes are made and committed, you may run `generate-changelog.sh` to generate and commit the changelog.
